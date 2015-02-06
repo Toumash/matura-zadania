@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class MainTest {
+public class AlgorytmyMaturalneTest {
 
     public static final String NOT_EQUAL_SOLUTIONS = "Problems != solutions (amount) See test case";
 
@@ -16,7 +16,7 @@ public class MainTest {
         assertEquals(NOT_EQUAL_SOLUTIONS, t.length, s.length);
 
         for (int i = 0; i < t.length; i++) {
-            assertEquals(s[i], Main.nww(t[i][0], t[i][1]));
+            assertEquals(s[i], AlgorytmyMaturalne.nww(t[i][0], t[i][1]));
         }
     }
 
@@ -28,7 +28,7 @@ public class MainTest {
         assertEquals(NOT_EQUAL_SOLUTIONS, t.length, s.length);
 
         for (int i = 0; i < t.length; i++) {
-            assertArrayEquals(s[i], Main.rozlozNaCzynniki(t[i]));
+            assertArrayEquals(s[i], AlgorytmyMaturalne.rozlozNaCzynniki(t[i]));
         }
     }
 
@@ -40,7 +40,7 @@ public class MainTest {
         assertEquals(NOT_EQUAL_SOLUTIONS, t.length, s.length);
 
         for (int i = 0; i < t.length; i++) {
-            assertEquals("Value :" + t[i], s[i], Main.isPrime(t[i]));
+            assertEquals("Value :" + t[i], s[i], AlgorytmyMaturalne.isPrimeNumber(t[i]));
         }
     }
 
@@ -52,7 +52,7 @@ public class MainTest {
         assertEquals(NOT_EQUAL_SOLUTIONS, testCases.length, solutions.length);
 
         for (int i = 0; i < testCases.length; i++) {
-            assertEquals(solutions[i], Main.fibbonacciRecursive(testCases[i]));
+            assertEquals(solutions[i], AlgorytmyMaturalne.fibbonacciRecursive(testCases[i]));
         }
     }
 
@@ -64,16 +64,16 @@ public class MainTest {
         assertEquals(NOT_EQUAL_SOLUTIONS, testCases.length, solutions.length);
 
         for (int i = 0; i < testCases.length; i++) {
-            assertEquals(solutions[i], Main.fibbonacciIterational(testCases[i]));
+            assertEquals(solutions[i], AlgorytmyMaturalne.fibbonacciIterational(testCases[i]));
         }
     }
 
     @Test
     public void testNWDModRecursive() throws Exception {
-        assertEquals(2, Main.nwdModRecursive(10, 2));
-        assertEquals(5, Main.nwdModRecursive(10, 5));
-        assertEquals(25, Main.nwdModRecursive(125, 25));
-        assertEquals(6, Main.nwdModRecursive(30, 6));
+        assertEquals(2, AlgorytmyMaturalne.nwdModRecursive(10, 2));
+        assertEquals(5, AlgorytmyMaturalne.nwdModRecursive(10, 5));
+        assertEquals(25, AlgorytmyMaturalne.nwdModRecursive(125, 25));
+        assertEquals(6, AlgorytmyMaturalne.nwdModRecursive(30, 6));
 
     }
 
@@ -85,27 +85,27 @@ public class MainTest {
         assertEquals(NOT_EQUAL_SOLUTIONS, t.length, s.length);
 
         for (int i = 0; i < t.length; i++) {
-            assertEquals(s[i], Main.factorialRecursive(t[i]));
+            assertEquals(s[i], AlgorytmyMaturalne.factorialRecursive(t[i]));
         }
     }
 
     /**
-     * @see pl.codesharks.maciura.Main NwdSubtract
+     * @see AlgorytmyMaturalne NwdSubtract
      */
     @Test
     public void testNwdSubtract() throws Exception {
-        assertEquals(2, Main.nwdSubtract(10, 2));
-        assertEquals(5, Main.nwdSubtract(10, 5));
-        assertEquals(25, Main.nwdSubtract(125, 25));
-        assertEquals(6, Main.nwdSubtract(30, 6));
+        assertEquals(2, AlgorytmyMaturalne.nwdSubtract(10, 2));
+        assertEquals(5, AlgorytmyMaturalne.nwdSubtract(10, 5));
+        assertEquals(25, AlgorytmyMaturalne.nwdSubtract(125, 25));
+        assertEquals(6, AlgorytmyMaturalne.nwdSubtract(30, 6));
     }
 
     @Test
     public void testNwdMod() throws Exception {
-        assertEquals(2, Main.nwdMod(10, 2));
-        assertEquals(5, Main.nwdMod(10, 5));
-        assertEquals(25, Main.nwdMod(125, 25));
-        assertEquals(6, Main.nwdMod(30, 6));
+        assertEquals(2, AlgorytmyMaturalne.nwdMod(10, 2));
+        assertEquals(5, AlgorytmyMaturalne.nwdMod(10, 5));
+        assertEquals(25, AlgorytmyMaturalne.nwdMod(125, 25));
+        assertEquals(6, AlgorytmyMaturalne.nwdMod(30, 6));
     }
 
     @Test
@@ -116,7 +116,7 @@ public class MainTest {
         assertEquals(NOT_EQUAL_SOLUTIONS, t.length, s.length);
 
         for (int i = 0; i < t.length; i++) {
-            assertEquals(s[i], Main.collatz(t[i]));
+            assertEquals(s[i], AlgorytmyMaturalne.collatz(t[i]));
         }
     }
 
@@ -128,7 +128,7 @@ public class MainTest {
         assertEquals(NOT_EQUAL_SOLUTIONS, t.length, s.length);
 
         for (int i = 0; i < t.length; i++) {
-            assertEquals(s[i], Main.factorialRecursive(t[i]));
+            assertEquals(s[i], AlgorytmyMaturalne.factorialRecursive(t[i]));
         }
     }
 
@@ -140,7 +140,7 @@ public class MainTest {
         assertEquals(NOT_EQUAL_SOLUTIONS, t.length, s.length);
 
         for (int i = 0; i < t.length; i++) {
-            String actual = Main.stringMerge(t[i][0], t[i][1]);
+            String actual = AlgorytmyMaturalne.stringMerge(t[i][0], t[i][1]);
             assertEquals(s[i], actual);
         }
     }
@@ -153,7 +153,7 @@ public class MainTest {
         assertEquals(NOT_EQUAL_SOLUTIONS, t.length, s.length);
 
         for (int i = 0; i < t.length; i++) {
-            String actual = Main.telefony((t[i]));
+            String actual = AlgorytmyMaturalne.telefony((t[i]));
             assertEquals(s[i], actual);
         }
     }

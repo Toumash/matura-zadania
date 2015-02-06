@@ -1,19 +1,11 @@
 package pl.codesharks.maciura;
 
-
 import javafx.util.Pair;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
-@SuppressWarnings("UnusedDeclaration")
-/**
- * Entry for our mature application
- */
-public class Main {
+@SuppressWarnings({"UnusedDeclaration", "SpellCheckingInspection"})
+public class AlgorytmyMaturalne {
 
     /**
      * Locale ENGLISH to workaround errors in floating-point numbers
@@ -22,59 +14,110 @@ public class Main {
     protected static Scanner s = new Scanner(System.in).useLocale(Locale.ENGLISH);
 
     public static void main(String[] args) {
-        /* SRunner.runStringMerge();  */
-        /* SRunner.runTelefony();  */
-        /* sumUntil50(true); */
-        /* System.out.println(decToBin(10)); */
-        /* wydajReszte(s.nextInt());  */
-        /* fibbonacciIterational(3); */
-        /* tribonacci(7);*/
-        /* trojka();*/
+        /* SRunner.runStringMerge();
+        SRunner.runTelefony(); sumUntil50(true);
+        System.out.println(decToBin(10));
+        wydajReszte(s.nextInt());
+        fibbonacciIterational(3);
+        tribonacci(7)
+        sumaTrojek()
+        anagramy()
+        tabliczkaMnozenia();
+        SRunner.runSkoki();
+        SRunner.runPiramidaKlockow();
+        */
+    }
 
-        /* anagram();*/
-        /* tabliczkaMnozenia();*/
+    /**
+     * Dana jest ilosć klocków, oblicz ilosc poziomów piramidy
+     * n = sqrt(2s) to zwykle przeksztalcenie wzoru na sume ciagu arytmetycznego<br>
+     * <code>
+     * s = (a1 + an)*n/2        <br>
+     * s  =(a1 + r(n-1))*n/2    <br>
+     * </code>
+     * <a href="http://youngcoder.eu/index.php/node/show/17505">Youngcoder - piramida klockow</a>
+     */
+    public static int piramidaKlockow(int s) {
+        return (int) Math.sqrt(2 * s);
+    }
+
+    /**
+     * Checks if elements in given range, are in ascending order
+     *
+     * @param array array to check
+     * @param a     left limiter
+     * @param b     right limiter
+     * @return are they ascending?
+     * @throws java.lang.IndexOutOfBoundsException if a is out of array index range
+     */
+    public static boolean isArrayAscending(int[] array, int a, int b) throws IndexOutOfBoundsException {
+        boolean ascending = true;
+        for (int i = a + 1; i <= b; i++) {
+            if (!(array[i] > array[i - 1])) {
+                ascending = false;
+                break;
+            }
+        }
+        return ascending;
+    }
+
+    public static boolean czyAnagramLiczenie(String stra, String strb) {
+        // Różnej długości wyrazy nie mogą byc anagramami
+        if (stra.length() != strb.length())
+            return false;
+
+        // KODY ASCII UZYWANE JAKO INDEKSY
+        int[] t1 = new int['Z'];
+        int[] t2 = new int['Z'];
+
+
+        int length = stra.length();
+
+        for (int i = 0; i < length; i++) {
+            char x = stra.charAt(i);
+            t1[x]++;
+        }
+
+        for (int i = 0; i < length; i++) {
+            char x = strb.charAt(i);
+            t2[x]++;
+        }
+
+        boolean czyAnagram = true;
+        for (int i = 0; i < 'Z'; i++) {
+            if (t1[i] != t2[i]) {
+                czyAnagram = false;
+                break;
+            }
+        }
+        return czyAnagram;
+    }
+
+    public static boolean czyAnagramSortowanie(String a, String b) {
+        char[] ac = a.toCharArray();
+        char[] bc = b.toCharArray();
+        Arrays.sort(ac);
+        Arrays.sort(bc);
+        return Arrays.equals(ac, bc);
     }
 
     /**
      * Full program checking if inputs are anagrams
+     * <a href="http://youngcoder.eu/index.php/node/show/17550">Youngcoder  - anagramy</a>
      */
-    public static void anagram() {
+    public static void anagramy() {
         int t;
         t = s.nextInt();
         for (int j = 0; j < t; j++) {
 
-            String w1, w2;
+            String a, b;
 
-            w1 = s.next();
-            w2 = s.next();
-            if (w1.length() != w2.length()) {
+            a = s.next();
+            b = s.next();
+            if (a.length() != b.length()) {
                 System.out.println("NIE");
             } else {
-
-                // KODY ASCII UZYWANE JAKO INDEKSY
-                int[] t1 = new int['Z'];
-                int[] t2 = new int['Z'];
-
-
-                int length = w1.length();
-
-                for (int i = 0; i < length; i++) {
-                    char x = w1.charAt(i);
-                    t1[x]++;
-                }
-
-                for (int i = 0; i < length; i++) {
-                    char x = w2.charAt(i);
-                    t2[x]++;
-                }
-
-                boolean czyJest = true;
-                for (int i = 0; i < 'Z'; i++) {
-                    if (t1[i] != t2[i]) {
-                        czyJest = false;
-                        break;
-                    }
-                }
+                boolean czyJest = czyAnagramLiczenie(a, b);
                 if (czyJest) {
                     System.out.println("TAK");
                 } else {
@@ -84,7 +127,10 @@ public class Main {
         }
     }
 
-    public static void trojka() {
+    /**
+     * <a href="http://youngcoder.eu/index.php/node/show/17408">Youngcoder - suma trojek</a>
+     */
+    public static void sumaTrojek() {
         int n, suma = 0;
         n = s.nextInt();
 
@@ -102,12 +148,16 @@ public class Main {
 
     }
 
+    /**
+     * Rysuje tabliczbe mnozenia  nxn w tabelce
+     * n podawane jest w konsoli
+     */
     public static void tabliczkaMnozenia() {
-        int n;
-        n = s.nextInt();
+        int n = s.nextInt();
+        //TODO: Generowanie poziomej linii
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= n; j++) {
-                System.out.print(i * j + " ");
+                System.out.print(padRight(String.valueOf(i * j), 4) + " ");
             }
             System.out.println();
         }
@@ -119,11 +169,11 @@ public class Main {
      * <br>
      * <code>
      * print('|');<br>
-     * print(center("25",4));<br>
+     * print(padRight("25",4));<br>
      * print('I');<br>
      * </code>
      */
-    public static String center(String str, int length) {
+    public static String padRight(String str, int length) {
         StringBuilder sb = new StringBuilder(length);
         int strLength = str.length();
         for (int i = 0; i < length - strLength; i++) {
@@ -134,17 +184,13 @@ public class Main {
     }
 
     /**
-     * Biggest pair multiplication
-     *
-     * @param a 1st number
-     * @param b 2nd number
-     * @return integer (the biggest pair multiplication)
+     * Computates greatest common multiplication
      */
     public static int nww(int a, int b) {
         return (a * b) / (nwdSubtract(a, b));//or nwdMod
     }
 
-    public static boolean isPrime(int n) {
+    public static boolean isPrimeNumber(int n) {
         if (n <= 1) {
             return false;
         } else {
@@ -163,15 +209,14 @@ public class Main {
         return a.equals(sb.reverse().toString());
     }
 
-    public static boolean czyAnagram(String a, String b) {
-        char[] ac = a.toCharArray();
-        char[] bc = b.toCharArray();
-        Arrays.sort(ac);
-        Arrays.sort(bc);
-        return Arrays.equals(ac, bc);
-    }
-
-    public static Pair<Float, Float> square(int a, int b, int c) {
+    /**
+     * Computes the roots of the QUadratic Equation like (ax^2+bx+c)
+     *
+     * @return Pair of roots if d>0. <br>
+     * Pair of same roots if d==0. <br>
+     * Null in case if d<0
+     */
+    public static Pair<Float, Float> rootOfQuadraticEquation(int a, int b, int c) {
         float delta = b * b - 4 * a * c;
         float d = (float) Math.sqrt(delta);
         if (delta >= 0) {
@@ -220,12 +265,18 @@ public class Main {
         return sb.toString();
     }
 
+    /**
+     * <a href="http://en.wikipedia.org/wiki/Greatest_common_divisor">Greatest common divisior</a>
+     */
     public static int nwdSubtract(int a, int b) {
         while (a != b) if (a > b) a -= b;
         else b -= a;
         return a;
     }
 
+    /**
+     * <a href="http://en.wikipedia.org/wiki/Greatest_common_divisor">Greatest common divisior</a>
+     */
     public static int nwdMod(int a, int b) {
         int r;
         while (b > 0) {
@@ -300,7 +351,7 @@ public class Main {
             }
             k++;
         }
-        return Helpers.toIntArray(list);
+        return Utils.toIntArray(list);
     }
 
     /**
@@ -392,7 +443,7 @@ public class Main {
         return suma;
     }
 
-    public static int maciura(int n) {
+    public static int maciuraFoo(int n) {
         if (n == 1) {
             return 1;
         } else {
@@ -406,6 +457,9 @@ public class Main {
         }
     }
 
+    /**
+     * Probna matura 2014 zadanie 1
+     */
     public static StringBuilder koraliki(int n) {
         StringBuilder sb = new StringBuilder();
         if (n == 1) {
@@ -418,8 +472,7 @@ public class Main {
         return sb;
     }
 
-
-    protected static class SRunner {
+    public static class SRunner {
         public static void runStringMerge() {
             int t = s.nextInt();
 
@@ -432,14 +485,56 @@ public class Main {
 
         public static void runTelefony() {
             int t = s.nextInt();
+
             for (int i = 0; i < t; i++) {
                 String str = s.next();
                 System.out.println(telefony(str));
             }
         }
+
+        /**
+         * <a href="http://youngcoder.eu/index.php/node/show/17549">http://youngcoder.eu/index.php/node/show/17549</a>
+         */
+        public static void runPalindromy() {
+            int t = s.nextInt();
+            for (int i = 0; i < t; i++) {
+                String str = s.next();
+                System.out.println(czyPalindrom(str.replace(" ", "")) ? "t" : "n");
+            }
+        }
+
+        public static void runPiramidaKlockow() {
+            int t = s.nextInt();
+            for (int i = 0; i < t; i++) {
+                int sum = s.nextInt();
+                System.out.println(piramidaKlockow(sum));
+            }
+        }
+
+        /**
+         * Sprawdza czy kolejne wartosci w danym przedziale A,B się zwiększaja
+         * <a href="http://youngcoder.eu/index.php/node/show/17545">http://youngcoder.eu/index.php/node/show/17545</a>
+         */
+        public static void runSkoki() {
+            // Ilosc liczb do wczytania
+            int n = s.nextInt();
+
+            int T[] = new int[n];
+
+            for (int i = 0; i < n; i++) {
+                T[i] = s.nextInt();
+            }
+            /* Ograniczniki, zakres,
+            przedział indeksow do sprawdzania   */
+            int a = s.nextInt();
+            int b = s.nextInt();
+
+            boolean ascending = isArrayAscending(T, a, b);
+            System.out.println(ascending);
+        }
     }
 
-    public static class Helpers {
+    public static class Utils {
         /**
          * Converts an array of Integer objects to an array of integer primitives
          *
