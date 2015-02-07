@@ -2,7 +2,11 @@ package pl.codesharks.maciura;
 
 import javafx.util.Pair;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 
 @SuppressWarnings({"UnusedDeclaration", "SpellCheckingInspection"})
 public class AlgorytmyMaturalne {
@@ -25,7 +29,32 @@ public class AlgorytmyMaturalne {
         tabliczkaMnozenia();
         SRunner.runSkoki();
         SRunner.runPiramidaKlockow();
-        */
+        sortujPary();
+          */
+    }
+
+    /**
+     * Sortuje 12 par liczb, najpierw po pierwszej, następnie po drugiej
+     * <a href="http://youngcoder.eu/index.php/node/show/17547">Youngcoder - sortowanie par</a>
+     */
+    private static Para[] sortujPary(Para[] T) {
+        for (int i = 0, max = T.length,length = T.length; i < length; i++, max--) {
+            for (int j = 1; j < length; j++) {
+                Para actual = T[j];
+                Para prev = T[j - 1];
+
+                if (actual.x < prev.x) {
+                    Para tmp = T[j];
+                    T[j] = T[j - 1];
+                    T[j - 1] = tmp;
+                } else if ((actual.x == prev.x) && (actual.y < prev.y)) {
+                    int tmp = actual.y;
+                    T[j].y = T[j - 1].y;
+                    T[j - 1].y = tmp;
+                }
+            }
+        }
+        return T;
     }
 
     /**
@@ -532,6 +561,20 @@ public class AlgorytmyMaturalne {
             boolean ascending = isArrayAscending(T, a, b);
             System.out.println(ascending);
         }
+
+        public static void runSortowaniePar(){
+            int n = s.nextInt();
+
+            Para[] t = new Para[n];
+            for (int i = 0; i < n; i++) {
+                Para p = new Para(s.nextInt(),s.nextInt());
+                t[i] = p;
+            }
+            t  = sortujPary(t);
+            for (Para aT : t) {
+                System.out.println(aT);
+            }
+        }
     }
 
     public static class Utils {
@@ -547,6 +590,20 @@ public class AlgorytmyMaturalne {
                 intArray[i] = integerList.get(i);
             }
             return intArray;
+        }
+    }
+
+    private static class Para {
+        public int x;
+        public int y;
+
+        public Para(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+        @Override
+        public String toString(){
+            return this.x + " " + this.y;
         }
     }
 }
