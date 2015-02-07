@@ -18,19 +18,31 @@ public class AlgorytmyMaturalne {
     protected static Scanner s = new Scanner(System.in).useLocale(Locale.ENGLISH);
 
     public static void main(String[] args) {
-        /* SRunner.runStringMerge();
-        SRunner.runTelefony(); sumUntil50(true);
-        System.out.println(decToBin(10));
-        wydajReszte(s.nextInt());
-        fibbonacciIterational(3);
-        tribonacci(7)
-        sumaTrojek()
-        anagramy()
-        tabliczkaMnozenia();
-        SRunner.runSkoki();
-        SRunner.runPiramidaKlockow();
-        sortujPary();
-          */
+    }
+
+    /**
+     * Wczytuje tablice o dlugosci t i szuka najwioekszej oraz najmniejszej wartosci poczym
+     * wskazuje ich roznice i oblicza sume roznic kazdej sztafety od minimalnej dl (tej do ktorej trzeba przyciac plot)
+     * <a href="http://youngcoder.eu/index.php/node/show/17506">Youngcoder Plot Stefana</a>
+     */
+    public static void plot() {
+        int t = s.nextInt();
+        int[] T = new int[t];
+        for (int i = 0; i < t; i++) {
+            T[i] = s.nextInt();
+        }
+
+        int max = T[0], min = T[0];
+        for (int i = 0; i < t; i++) {
+            if (T[i] > max) max = T[i];
+            if (T[i] < min) min = T[i];
+        }
+        int sum = 0;
+        for (int i = 0; i < t; i++) {
+            sum += T[i] - min;
+        }
+        System.out.println(max - min);
+        System.out.println(sum);
     }
 
     /**
@@ -38,7 +50,7 @@ public class AlgorytmyMaturalne {
      * <a href="http://youngcoder.eu/index.php/node/show/17547">Youngcoder - sortowanie par</a>
      */
     private static Para[] sortujPary(Para[] T) {
-        for (int i = 0, max = T.length,length = T.length; i < length; i++, max--) {
+        for (int i = 0, length = T.length; i < length; i++) {
             for (int j = 1; j < length; j++) {
                 Para actual = T[j];
                 Para prev = T[j - 1];
@@ -562,15 +574,15 @@ public class AlgorytmyMaturalne {
             System.out.println(ascending);
         }
 
-        public static void runSortowaniePar(){
+        public static void runSortowaniePar() {
             int n = s.nextInt();
 
             Para[] t = new Para[n];
             for (int i = 0; i < n; i++) {
-                Para p = new Para(s.nextInt(),s.nextInt());
+                Para p = new Para(s.nextInt(), s.nextInt());
                 t[i] = p;
             }
-            t  = sortujPary(t);
+            t = sortujPary(t);
             for (Para aT : t) {
                 System.out.println(aT);
             }
@@ -593,7 +605,7 @@ public class AlgorytmyMaturalne {
         }
     }
 
-    private static class Para {
+    public static class Para {
         public int x;
         public int y;
 
@@ -601,8 +613,9 @@ public class AlgorytmyMaturalne {
             this.x = x;
             this.y = y;
         }
+
         @Override
-        public String toString(){
+        public String toString() {
             return this.x + " " + this.y;
         }
     }
