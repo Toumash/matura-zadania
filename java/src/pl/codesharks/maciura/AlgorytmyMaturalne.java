@@ -2,11 +2,7 @@ package pl.codesharks.maciura;
 
 import javafx.util.Pair;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
 @SuppressWarnings({"UnusedDeclaration", "SpellCheckingInspection"})
 public class AlgorytmyMaturalne {
@@ -18,6 +14,36 @@ public class AlgorytmyMaturalne {
     protected static Scanner s = new Scanner(System.in).useLocale(Locale.ENGLISH);
 
     public static void main(String[] args) {
+    }
+
+    /**
+     * <a href="http://youngcoder.eu/index.php/node/show/17500">Youngcoder - klasy adresow IP</a>
+     */
+    private static void klasyAdresowIP() {
+        int t = s.nextInt();
+
+        for (int i = 0; i < t; i++) {
+            String input = s.next();
+            String[] parts = input.split("\\.");
+
+            int a = Integer.parseInt(parts[0]);
+            int b = Integer.parseInt(parts[1]);
+            int c = Integer.parseInt(parts[2]);
+            int d = Integer.parseInt(parts[3]);
+
+            String out;
+            if (a > 255 || b > 255 || c > 255 || d > 255) {
+                out = "error";
+            } else if (a <= 127) {
+                out = "A";
+            } else if (a <= 191) {
+                out = "B";
+            } else {
+                out = "C";
+            }
+            System.out.println(out);
+        }
+
     }
 
     /**

@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class AlgorytmyMaturalneTest {
 
     public static final String NOT_EQUAL_SOLUTIONS = "Problems != solutions (amount) See test case";
