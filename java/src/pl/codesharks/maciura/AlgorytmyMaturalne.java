@@ -7,6 +7,7 @@ import java.util.*;
 @SuppressWarnings({"UnusedDeclaration", "SpellCheckingInspection"})
 public class AlgorytmyMaturalne {
 
+
     /**
      * Locale ENGLISH to workaround errors in floating-point numbers
      * delimited by "," (as in Poland) not "." (World standard)
@@ -537,6 +538,105 @@ public class AlgorytmyMaturalne {
             return koraliki((n - 1) / 2).append('c');
         }
         return sb;
+    }
+
+    /**
+     * Zwyka obudowana caa implementacja kolka i krzyzyk
+     */
+    public static class TicTacToe {
+
+        public static final int O = 0;
+        public static final int X = 1;
+        public static final int P = -1;
+        public static int aktualnyGracz = O;
+        /**
+         * Cokolwiek, widac to dopiero gdy ktos wygral, a wtedy ma normalna wartosc
+         */
+        private static int wygrany = -2;
+
+        public static void TickTacToe() {
+            int[][] T = new int[3][3];
+
+            for (int i = 0; i < T.length; i++) {
+                for (int j = 0; j < T[i].length; j++) {
+                    T[i][j] = P;
+                }
+            }
+
+            while (!czyKtosWygral(T)) {
+                wyswietl(T);
+
+                System.out.println("Twoja kolej: " + (aktualnyGracz == O ? "O" : "X"));
+
+                int x = s.nextInt(), y = s.nextInt();
+
+                if (T[x][y] == P) {
+                    T[x][y] = aktualnyGracz;
+                    aktualnyGracz = (aktualnyGracz == O) ? X : O;
+
+                } else {
+                    System.out.println("Sorki, pole juz zajete");
+                }
+
+                System.out.println("=================================");
+            }
+            System.out.println("HURA WYGRAŁES " + (wygrany == X ? "X" : "O") + " !!111oneoneone");
+
+        }
+
+        public static boolean czyKtosWygral(int[][] t) {
+            if (t[0][0] == t[0][1] && t[0][1] == t[0][2]) {
+                if (t[0][1] != P) {
+                    wygrany = t[0][1];
+                    return true;
+                }
+            }
+            if (t[1][0] == t[1][1] && t[1][1] == t[1][2]) {
+                if (t[1][0] != P) {
+                    wygrany = t[1][0];
+                    return true;
+                }
+            }
+            if (t[2][0] == t[2][1] && t[2][1] == t[2][2]) {
+                if (t[2][0] != P) {
+                    wygrany = t[2][0];
+                    return true;
+                }
+            }
+
+            for (int x = 0; x < t.length; x++) {
+                if (t[0][x] == t[1][x] && t[1][x] == t[2][x]) {
+                    if (t[2][x] != P) {
+                        wygrany = t[2][x];
+                        return true;
+                    }
+                }
+            }
+
+            if (t[0][0] == t[1][1] && t[1][1] == t[2][2]) {
+                if (t[2][2] != P) {
+                    wygrany = t[2][2];
+                    return true;
+                }
+            }
+            if (t[0][2] == t[1][1] && t[1][1] == t[2][0]) {
+                if (t[0][2] != P) {
+                    wygrany = t[0][2];
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public static void wyswietl(int[][] tab) {
+            for (int i = 0; i < tab.length; i++) {
+                for (int j = 0; j < tab[i].length; j++) {
+                    System.out.print(padRight(String.valueOf(tab[i][j]), 3));
+                }
+                System.out.println();
+            }
+        }
     }
 
     public static class SRunner {
