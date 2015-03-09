@@ -18,6 +18,129 @@ public class AlgorytmyMaturalne {
     }
 
     /**
+     * <a href="http://pl.spoj.com/problems/PP0601A2/">Test 3 - SPOJ</a>
+     * wyswietla liczby dopoki nie napotka 3 par 42 i czegos innego niz 42 NAPRZEMIAN
+     */
+    private static void test3() {
+
+        int n42 = 0;
+        int ncos = 0;
+        int prev = 0;
+        while (true) {
+            int x = s.nextInt();
+
+            if (x == 42 && prev != 42) {
+                n42++;
+            } else if (x != 42 && prev == 42) {
+                ncos++;
+            } else if (x == 42) {
+                //gdy mamy pare 42
+                n42 = 1;
+                ncos = 0;
+            } else {
+                //gdy mamy pare czegos != 42
+                ncos = 1;
+                n42 = 0;
+            }
+
+            System.out.println(x);
+            // 3 pary (42 , cos!=42)
+            if (ncos == 3 && n42 == 3) {
+                break;
+            }
+            prev = x;
+        }
+
+    }
+
+    /**
+     * <a href="http://pl.spoj.com/problems/PP0506A/">Sortowanie punktów - SPOJ</a>
+     * Sortuje punkty w zaleznosci od odległości od środka układu współrzędnych
+     */
+    private static void sortujPunkty() {
+        int t = s.nextInt();
+
+        for (int i = 0; i < t; i++) {
+            int n = s.nextInt();
+            Point[] tab = new Point[n];
+
+            for (int j = 0; j < n; j++) {
+                Point tmp = new Point();
+                tmp.name = s.next();
+                tmp.x = s.nextInt();
+                tmp.y = s.nextInt();
+                tab[j] = tmp;
+            }
+
+            Arrays.sort(tab);
+
+            for (int j = 0; j < n; j++) {
+                System.out.println(tab[j]);
+            }
+            System.out.println();
+        }
+    }
+
+    /**
+     * <a href="http://pl.spoj.com/problems/JSPACE/">SPACJE - SPOJ</a>
+     */
+    private static void spacje() {
+        String line;
+        while (s.hasNextLine()) {
+            line = s.nextLine();
+
+            boolean czyRobicDuza = true;
+            for (int i = 0; i < line.length(); i++) {
+                char znak = line.charAt(i);
+
+                if (znak == ' ') {
+                    czyRobicDuza = true;
+                } else if (czyRobicDuza) {
+                    System.out.print(String.valueOf(znak).toUpperCase());
+                    czyRobicDuza = false;
+                } else {
+                    System.out.print(znak);
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    /**
+     * <a href="http://pl.spoj.com/problems/TRN/">Transponowanie Macierzy - SPOJ</a>
+     */
+    private static void transponowanieMacierzy() {
+        int w = s.nextInt();
+        int k = s.nextInt();
+
+        int[][] t = new int[w][k];
+
+        for (int i = 0; i < w; i++) {
+            for (int j = 0; j < k; j++) {
+                t[i][j] = s.nextInt();
+            }
+        }
+
+        for (int i = 0; i < k; i++) {
+            for (int j = 0; j < w; j++) {
+                System.out.print(t[j][i] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    private static void tablica() {
+        String line = s.nextLine();
+
+        String[] lines = line.split(" ");
+
+        for (int i = lines.length - 1; i >= 0; i--) {
+            System.out.print(lines[i] + " ");
+        }
+
+    }
+
+    /**
      * <a href="http://youngcoder.eu/index.php/node/show/17500">Youngcoder - klasy adresow IP</a>
      */
     private static void klasyAdresowIP() {
@@ -52,7 +175,7 @@ public class AlgorytmyMaturalne {
      * wskazuje ich roznice i oblicza sume roznic kazdej sztafety od minimalnej dl (tej do ktorej trzeba przyciac plot)
      * <a href="http://youngcoder.eu/index.php/node/show/17506">Youngcoder Plot Stefana</a>
      */
-    public static void plot() {
+    private static void plot() {
         int t = s.nextInt();
         int[] T = new int[t];
         for (int i = 0; i < t; i++) {
@@ -76,7 +199,7 @@ public class AlgorytmyMaturalne {
      * Sortuje 12 par liczb, najpierw po pierwszej, następnie po drugiej
      * <a href="http://youngcoder.eu/index.php/node/show/17547">Youngcoder - sortowanie par</a>
      */
-    private static Para[] sortujPary(Para[] T) {
+    public static Para[] sortujPary(Para[] T) {
         for (int i = 0, length = T.length; i < length; i++) {
             for (int j = 1; j < length; j++) {
                 Para actual = T[j];
@@ -173,7 +296,7 @@ public class AlgorytmyMaturalne {
      * Full program checking if inputs are anagrams
      * <a href="http://youngcoder.eu/index.php/node/show/17550">Youngcoder  - anagramy</a>
      */
-    public static void anagramy() {
+    private static void anagramy() {
         int t;
         t = s.nextInt();
         for (int j = 0; j < t; j++) {
@@ -198,7 +321,7 @@ public class AlgorytmyMaturalne {
     /**
      * <a href="http://youngcoder.eu/index.php/node/show/17408">Youngcoder - suma trojek</a>
      */
-    public static void sumaTrojek() {
+    private static void sumaTrojek() {
         int n, suma = 0;
         n = s.nextInt();
 
@@ -220,7 +343,7 @@ public class AlgorytmyMaturalne {
      * Rysuje tabliczbe mnozenia  nxn w tabelce
      * n podawane jest w konsoli
      */
-    public static void tabliczkaMnozenia() {
+    private static void tabliczkaMnozenia() {
         int n = s.nextInt();
         //TODO: Generowanie poziomej linii
         for (int i = 1; i <= n; i++) {
@@ -292,6 +415,32 @@ public class AlgorytmyMaturalne {
         } else {
             return null;
         }
+    }
+
+    /**
+     * <a href="http://pl.spoj.com/problems/PP0602D/">ROL(k) - SPOJ</a>
+     * przesuwa elementy tablicy cyklicznie w lewo o k
+     */
+    private static void rolk() {
+        int n = s.nextInt();
+        // ilosc elementow
+        int k = s.nextInt();
+
+        int[] tab = new int[n];
+
+        // Wczytanie danych do tablicy
+        for (int i = 0; i < tab.length; i++) {
+            tab[i] = s.nextInt();
+        }
+
+        for (int i = k; i < tab.length; i++) {
+            System.out.print(tab[i] + " ");
+        }
+
+        for (int i = 0; i < k; i++) {
+            System.out.print(tab[i] + " ");
+        }
+
     }
 
     public static String telefony(String str) {
@@ -391,6 +540,31 @@ public class AlgorytmyMaturalne {
     }
 
     /**
+     * <a href="http://pl.spoj.com/problems/EUCGAME/">Gra Euklidesa - SPOJ</a>
+     */
+    private static void graEukl() {
+        int t = s.nextInt();
+
+        for (int i = 0; i < t; i++) {
+            int a = s.nextInt();
+            int b = s.nextInt();
+
+            // NWD
+            // || lub
+            // && i
+            while (a != b) {
+                if (a > b) {
+                    a -= b;
+                } else {
+                    b -= a;
+                }
+            }
+
+            System.out.println(a + b);
+        }
+    }
+
+    /**
      * Zadanie z
      * http://pl.spoj.com/problems/PTCLTZ/
      */
@@ -427,7 +601,7 @@ public class AlgorytmyMaturalne {
      *
      * @param input wartosc reszty do wydania
      */
-    public static void wydajReszte(int input) {
+    private static void wydajReszte(int input) {
         int[] nominaly = {20000, 10000, 5000, 2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1};
         System.out.println("Podaj resztę do wydania w groszach");
         int reszta = input;
@@ -538,6 +712,29 @@ public class AlgorytmyMaturalne {
             return koraliki((n - 1) / 2).append('c');
         }
         return sb;
+    }
+
+    private static class Point implements Comparable<Point> {
+        public String name;
+        public int x;
+        public int y;
+
+        @Override
+        public int compareTo(Point o) {
+            double dist1 = Math.sqrt(x * x + y * y);
+            double dist2 = Math.sqrt(o.x * o.x + o.y * o.y);
+
+            if (dist1 > dist2) {
+                return 1;
+            } else if (dist1 < dist2) {
+                return -1;
+            } else return 0;
+        }
+
+        @Override
+        public String toString() {
+            return name + " " + x + " " + y;
+        }
     }
 
     /**
