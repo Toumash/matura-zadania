@@ -1,7 +1,8 @@
 package pl.codesharks.maciura;
 
-import javafx.util.Pair;
 import org.junit.Test;
+import pl.codesharks.maciura.util.CollectionsUtils;
+import pl.codesharks.maciura.util.Pair;
 
 import java.util.ArrayList;
 

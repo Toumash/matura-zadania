@@ -1,6 +1,8 @@
 package pl.codesharks.maciura;
 
-import javafx.util.Pair;
+
+import pl.codesharks.maciura.util.CollectionsUtils;
+import pl.codesharks.maciura.util.Pair;
 
 import java.util.*;
 
@@ -27,7 +29,7 @@ public class AlgorytmyMaturalne {
      * Oblicza sume parzystych wyrazow ciagu arytmetyczniego 1,2,3,4...n
      */
     public static int sumaParzystych(int n) {
-        return ((0 + n) / 2) * n;
+        return ((n) / 2) * n;
     }
 
     /**

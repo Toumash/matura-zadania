@@ -1,6 +1,5 @@
-package pl.codesharks.maciura;
+package pl.codesharks.maciura.util;
 
-import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.Arrays;
