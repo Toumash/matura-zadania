@@ -7,7 +7,6 @@ import java.util.*;
 @SuppressWarnings({"UnusedDeclaration", "SpellCheckingInspection"})
 public class AlgorytmyMaturalne {
 
-
     /**
      * Locale ENGLISH to workaround errors in floating-point numbers
      * delimited by "," (as in Poland) not "." (World standard)
@@ -18,11 +17,78 @@ public class AlgorytmyMaturalne {
     }
 
     /**
+     * Oblicza sume nieparzystych wyrazow ciagu arytmetyczniego 1,2,3,4...n
+     */
+    public static int sumaNieparzystych(int n) {
+        return ((1 + n) / 2) * n;
+    }
+
+    /**
+     * Oblicza sume parzystych wyrazow ciagu arytmetyczniego 1,2,3,4...n
+     */
+    public static int sumaParzystych(int n) {
+        return ((0 + n) / 2) * n;
+    }
+
+    /**
+     * <a href="http://pl.spoj.com/problems/MWPZ06X/"> Nowa działka - SPOJ</a>
+     * wylicza kwadraty wpisywanych liczb
+     */
+    private static void nowaDzialka() {
+        int t = s.nextInt();
+        for (int i = 0; i < t; i++) {
+            int n = s.nextInt();
+            System.out.println(n * n);
+        }
+    }
+
+    /**
+     * <a href="http://pl.spoj.com/problems/NIEKOLEJ/">NIEKOLEJ - SPOJ</a>
+     * wyswietla ciag liczb 1...n tak, aby obok każdej liczby delta sąsiada != 1
+     */
+    private static void niekolejne() {
+        int n = s.nextInt();
+
+        if (n < 2) {
+            System.out.println("NIE");
+        } else if (n == 2) {
+            System.out.println("2 0 1 3");
+        } else {
+            for (int i = 0; i < n; i += 2) {
+                System.out.print(i + " ");
+            }
+            for (int i = 1; i <= n; i += 2) {
+                System.out.print(i + " ");
+            }
+        }
+    }
+
+
+    /**
+     * <a href="http://pl.spoj.com/problems/JPESEL/">Sprawdzanie poprawności PESELów - SPOJ</a>
+     */
+    public static boolean isPESELValid(String p) {
+        if (p.length() != 11) {
+            return false;
+        }
+        int[] weights = {1, 3, 7, 9, 1, 3, 7, 9, 1, 3, 1};
+
+        int wynik = 0;
+        for (int i = 0, length = p.length(); i < length; i++) {
+            wynik += convertToInt(p.charAt(i)) * weights[i];
+        }
+        return wynik % 10 == 0;
+    }
+
+    public static int convertToInt(char x) {
+        return x - '0';
+    }
+
+    /**
      * <a href="http://pl.spoj.com/problems/PP0601A2/">Test 3 - SPOJ</a>
      * wyswietla liczby dopoki nie napotka 3 par 42 i czegos innego niz 42 NAPRZEMIAN
      */
     private static void test3() {
-
         int n42 = 0;
         int ncos = 0;
         int prev = 0;
@@ -129,15 +195,15 @@ public class AlgorytmyMaturalne {
         }
     }
 
-    private static void tablica() {
-        String line = s.nextLine();
+    /**
+     * Displays words in reverse order
+     */
+    public static void displayWordsInReverseOrder(String line) {
+        String[] words = line.split(" ");
 
-        String[] lines = line.split(" ");
-
-        for (int i = lines.length - 1; i >= 0; i--) {
-            System.out.print(lines[i] + " ");
+        for (int i = words.length - 1; i >= 0; i--) {
+            System.out.print(words[i] + " ");
         }
-
     }
 
     /**
@@ -167,7 +233,6 @@ public class AlgorytmyMaturalne {
             }
             System.out.println(out);
         }
-
     }
 
     /**
@@ -593,7 +658,7 @@ public class AlgorytmyMaturalne {
             }
             k++;
         }
-        return Utils.toIntArray(list);
+        return CollectionsUtils.toIntArray(list);
     }
 
     /**
@@ -909,22 +974,6 @@ public class AlgorytmyMaturalne {
             for (Para aT : t) {
                 System.out.println(aT);
             }
-        }
-    }
-
-    public static class Utils {
-        /**
-         * Converts an array of Integer objects to an array of integer primitives
-         *
-         * @param integerList the integer list
-         * @return an array of integer primitives
-         */
-        public static int[] toIntArray(List<Integer> integerList) {
-            int[] intArray = new int[integerList.size()];
-            for (int i = 0; i < integerList.size(); i++) {
-                intArray[i] = integerList.get(i);
-            }
-            return intArray;
         }
     }
 
