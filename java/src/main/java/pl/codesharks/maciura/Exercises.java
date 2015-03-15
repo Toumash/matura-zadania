@@ -1,13 +1,12 @@
 package pl.codesharks.maciura;
 
 
-import pl.codesharks.maciura.util.CollectionsUtils;
-import pl.codesharks.maciura.util.Pair;
-
-import java.util.*;
+import java.util.Arrays;
+import java.util.Locale;
+import java.util.Scanner;
 
 @SuppressWarnings({"UnusedDeclaration", "SpellCheckingInspection"})
-public class AlgorytmyMaturalne {
+public class Exercises {
 
     /**
      * Locale ENGLISH to workaround errors in floating-point numbers
@@ -19,24 +18,10 @@ public class AlgorytmyMaturalne {
     }
 
     /**
-     * Oblicza sume nieparzystych wyrazow ciagu arytmetyczniego 1,2,3,4...n
-     */
-    public static int sumaNieparzystych(int n) {
-        return ((1 + n) / 2) * n;
-    }
-
-    /**
-     * Oblicza sume parzystych wyrazow ciagu arytmetyczniego 1,2,3,4...n
-     */
-    public static int sumaParzystych(int n) {
-        return ((n) / 2) * n;
-    }
-
-    /**
      * <a href="http://pl.spoj.com/problems/MWPZ06X/"> Nowa działka - SPOJ</a>
      * wylicza kwadraty wpisywanych liczb
      */
-    private static void nowaDzialka() {
+    public static void nowaDzialka() {
         int t = s.nextInt();
         for (int i = 0; i < t; i++) {
             int n = s.nextInt();
@@ -48,7 +33,7 @@ public class AlgorytmyMaturalne {
      * <a href="http://pl.spoj.com/problems/NIEKOLEJ/">NIEKOLEJ - SPOJ</a>
      * wyswietla ciag liczb 1...n tak, aby obok każdej liczby delta sąsiada != 1
      */
-    private static void niekolejne() {
+    public static void niekolejne() {
         int n = s.nextInt();
 
         if (n < 2) {
@@ -65,7 +50,6 @@ public class AlgorytmyMaturalne {
         }
     }
 
-
     /**
      * <a href="http://pl.spoj.com/problems/JPESEL/">Sprawdzanie poprawności PESELów - SPOJ</a>
      */
@@ -77,20 +61,16 @@ public class AlgorytmyMaturalne {
 
         int wynik = 0;
         for (int i = 0, length = p.length(); i < length; i++) {
-            wynik += convertToInt(p.charAt(i)) * weights[i];
+            wynik += PureFunctions.convertToInt(p.charAt(i)) * weights[i];
         }
         return wynik % 10 == 0;
-    }
-
-    public static int convertToInt(char x) {
-        return x - '0';
     }
 
     /**
      * <a href="http://pl.spoj.com/problems/PP0601A2/">Test 3 - SPOJ</a>
      * wyswietla liczby dopoki nie napotka 3 par 42 i czegos innego niz 42 NAPRZEMIAN
      */
-    private static void test3() {
+    public static void test3() {
         int n42 = 0;
         int ncos = 0;
         int prev = 0;
@@ -125,7 +105,7 @@ public class AlgorytmyMaturalne {
      * <a href="http://pl.spoj.com/problems/PP0506A/">Sortowanie punktów - SPOJ</a>
      * Sortuje punkty w zaleznosci od odległości od środka układu współrzędnych
      */
-    private static void sortujPunkty() {
+    public static void sortujPunkty() {
         int t = s.nextInt();
 
         for (int i = 0; i < t; i++) {
@@ -152,7 +132,7 @@ public class AlgorytmyMaturalne {
     /**
      * <a href="http://pl.spoj.com/problems/JSPACE/">SPACJE - SPOJ</a>
      */
-    private static void spacje() {
+    public static void spacje() {
         String line;
         while (s.hasNextLine()) {
             line = s.nextLine();
@@ -177,7 +157,7 @@ public class AlgorytmyMaturalne {
     /**
      * <a href="http://pl.spoj.com/problems/TRN/">Transponowanie Macierzy - SPOJ</a>
      */
-    private static void transponowanieMacierzy() {
+    public static void transponowanieMacierzy() {
         int w = s.nextInt();
         int k = s.nextInt();
 
@@ -189,29 +169,21 @@ public class AlgorytmyMaturalne {
             }
         }
 
-        for (int i = 0; i < k; i++) {
-            for (int j = 0; j < w; j++) {
-                System.out.print(t[j][i] + " ");
+        int[][] transposed = PureFunctions.transposeMatrix(t);
+
+        for (int[] tab : transposed) {
+            for (int e : tab) {
+                System.out.print(e);
             }
             System.out.println();
         }
     }
 
-    /**
-     * Displays words in reverse order
-     */
-    public static void displayWordsInReverseOrder(String line) {
-        String[] words = line.split(" ");
-
-        for (int i = words.length - 1; i >= 0; i--) {
-            System.out.print(words[i] + " ");
-        }
-    }
 
     /**
      * <a href="http://youngcoder.eu/index.php/node/show/17500">Youngcoder - klasy adresow IP</a>
      */
-    private static void klasyAdresowIP() {
+    public static void klasyAdresowIP() {
         int t = s.nextInt();
 
         for (int i = 0; i < t; i++) {
@@ -242,7 +214,7 @@ public class AlgorytmyMaturalne {
      * wskazuje ich roznice i oblicza sume roznic kazdej sztafety od minimalnej dl (tej do ktorej trzeba przyciac plot)
      * <a href="http://youngcoder.eu/index.php/node/show/17506">Youngcoder Plot Stefana</a>
      */
-    private static void plot() {
+    public static void plot() {
         int t = s.nextInt();
         int[] T = new int[t];
         for (int i = 0; i < t; i++) {
@@ -266,24 +238,24 @@ public class AlgorytmyMaturalne {
      * Sortuje 12 par liczb, najpierw po pierwszej, następnie po drugiej
      * <a href="http://youngcoder.eu/index.php/node/show/17547">Youngcoder - sortowanie par</a>
      */
-    public static Para[] sortujPary(Para[] T) {
-        for (int i = 0, length = T.length; i < length; i++) {
+    public static Para[] sortujPary(Para[] tab) {
+        for (int i = 0, length = tab.length; i < length; i++) {
             for (int j = 1; j < length; j++) {
-                Para actual = T[j];
-                Para prev = T[j - 1];
+                Para actual = tab[j];
+                Para prev = tab[j - 1];
 
                 if (actual.x < prev.x) {
-                    Para tmp = T[j];
-                    T[j] = T[j - 1];
-                    T[j - 1] = tmp;
+                    Para tmp = tab[j];
+                    tab[j] = tab[j - 1];
+                    tab[j - 1] = tmp;
                 } else if ((actual.x == prev.x) && (actual.y < prev.y)) {
                     int tmp = actual.y;
-                    T[j].y = T[j - 1].y;
-                    T[j - 1].y = tmp;
+                    tab[j].y = tab[j - 1].y;
+                    tab[j - 1].y = tmp;
                 }
             }
         }
-        return T;
+        return tab;
     }
 
     /**
@@ -300,70 +272,9 @@ public class AlgorytmyMaturalne {
     }
 
     /**
-     * Checks if elements in given range, are in ascending order
-     *
-     * @param array array to check
-     * @param a     left limiter
-     * @param b     right limiter
-     * @return are they ascending?
-     * @throws java.lang.IndexOutOfBoundsException if a is out of array index range
-     */
-    public static boolean isArrayAscending(int[] array, int a, int b) throws IndexOutOfBoundsException {
-        boolean ascending = true;
-        for (int i = a + 1; i <= b; i++) {
-            if (!(array[i] > array[i - 1])) {
-                ascending = false;
-                break;
-            }
-        }
-        return ascending;
-    }
-
-    public static boolean czyAnagramLiczenie(String stra, String strb) {
-        // Różnej długości wyrazy nie mogą byc anagramami
-        if (stra.length() != strb.length())
-            return false;
-
-        // KODY ASCII UZYWANE JAKO INDEKSY
-        int[] t1 = new int['Z'];
-        int[] t2 = new int['Z'];
-
-
-        int length = stra.length();
-
-        for (int i = 0; i < length; i++) {
-            char x = stra.charAt(i);
-            t1[x]++;
-        }
-
-        for (int i = 0; i < length; i++) {
-            char x = strb.charAt(i);
-            t2[x]++;
-        }
-
-        boolean czyAnagram = true;
-        for (int i = 0; i < 'Z'; i++) {
-            if (t1[i] != t2[i]) {
-                czyAnagram = false;
-                break;
-            }
-        }
-        return czyAnagram;
-    }
-
-    public static boolean czyAnagramSortowanie(String a, String b) {
-        char[] ac = a.toCharArray();
-        char[] bc = b.toCharArray();
-        Arrays.sort(ac);
-        Arrays.sort(bc);
-        return Arrays.equals(ac, bc);
-    }
-
-    /**
-     * Full program checking if inputs are anagrams
      * <a href="http://youngcoder.eu/index.php/node/show/17550">Youngcoder  - anagramy</a>
      */
-    private static void anagramy() {
+    public static void anagramy() {
         int t;
         t = s.nextInt();
         for (int j = 0; j < t; j++) {
@@ -375,7 +286,7 @@ public class AlgorytmyMaturalne {
             if (a.length() != b.length()) {
                 System.out.println("NIE");
             } else {
-                boolean czyJest = czyAnagramLiczenie(a, b);
+                boolean czyJest = PureFunctions.czyAnagramLiczenie(a, b);
                 if (czyJest) {
                     System.out.println("TAK");
                 } else {
@@ -386,9 +297,18 @@ public class AlgorytmyMaturalne {
     }
 
     /**
-     * <a href="http://youngcoder.eu/index.php/node/show/17408">Youngcoder - suma trojek</a>
+     * <a href="http://youngcoder.eu/index.php/node/show/17408">Youngcoder - suma trojek</a><br/>
+     * z ciągu 1 2 3 4 5 6 7 8 9<br/>
+     * sumujemy trojki<br/>
+     * 123<br/>
+     * 234<br/>
+     * 345<br/>
+     * 456<br/>
+     * 567<br/>
+     * 678<br/>
+     * 789
      */
-    private static void sumaTrojek() {
+    public static void sumaTrojek() {
         int n, suma = 0;
         n = s.nextInt();
 
@@ -410,7 +330,7 @@ public class AlgorytmyMaturalne {
      * Rysuje tabliczbe mnozenia  nxn w tabelce
      * n podawane jest w konsoli
      */
-    private static void tabliczkaMnozenia() {
+    public static void tabliczkaMnozenia() {
         int n = s.nextInt();
         //TODO: Generowanie poziomej linii
         for (int i = 1; i <= n; i++) {
@@ -442,53 +362,10 @@ public class AlgorytmyMaturalne {
     }
 
     /**
-     * Computates greatest common multiplication
-     */
-    public static int nww(int a, int b) {
-        return (a * b) / (nwdSubtract(a, b));//or nwdMod
-    }
-
-    public static boolean isPrimeNumber(int n) {
-        if (n <= 1) {
-            return false;
-        } else {
-            if (n == 2) return true;
-
-            int sq = (int) Math.ceil(Math.sqrt(n));
-            for (int i = 2; i <= sq; i++) {
-                if (n % i == 0) return false;
-            }
-            return true;
-        }
-    }
-
-    public static boolean czyPalindrom(String a) {
-        StringBuilder sb = new StringBuilder(a);
-        return a.equals(sb.reverse().toString());
-    }
-
-    /**
-     * Computes the roots of the QUadratic Equation like (ax^2+bx+c)
-     *
-     * @return Pair of roots if d>0. <br>
-     * Pair of same roots if d==0. <br>
-     * Null in case if d<0
-     */
-    public static Pair<Float, Float> rootOfQuadraticEquation(int a, int b, int c) {
-        float delta = b * b - 4 * a * c;
-        float d = (float) Math.sqrt(delta);
-        if (delta >= 0) {
-            return new Pair<>((-b + d) / (2 * a), (-b - d) / (2 * a));
-        } else {
-            return null;
-        }
-    }
-
-    /**
      * <a href="http://pl.spoj.com/problems/PP0602D/">ROL(k) - SPOJ</a>
      * przesuwa elementy tablicy cyklicznie w lewo o k
      */
-    private static void rolk() {
+    public static void rolk() {
         int n = s.nextInt();
         // ilosc elementow
         int k = s.nextInt();
@@ -538,129 +415,20 @@ public class AlgorytmyMaturalne {
         return sb.toString();
     }
 
-    public static String stringMerge(String a, String b) {
-        StringBuilder sb = new StringBuilder();
-        int j = Math.min(a.length(), b.length());
-
-        for (int i = 0; i < j; i++) {
-            sb.append(a.charAt(i));
-            sb.append(b.charAt(i));
-        }
-        return sb.toString();
-    }
-
-    /**
-     * <a href="http://en.wikipedia.org/wiki/Greatest_common_divisor">Greatest common divisior</a>
-     */
-    public static int nwdSubtract(int a, int b) {
-        while (a != b) if (a > b) a -= b;
-        else b -= a;
-        return a;
-    }
-
-    /**
-     * <a href="http://en.wikipedia.org/wiki/Greatest_common_divisor">Greatest common divisior</a>
-     */
-    public static int nwdMod(int a, int b) {
-        int r;
-        while (b > 0) {
-            r = a % b;
-            a = b;
-            b = r;
-        }
-        return a;
-    }
-
-    public static int tribonacci(int n) {
-        if (n == 0 || n == 1) {
-            System.out.println(0);
-            return 0;
-        } else if (n == 2) {
-            System.out.println(1);
-            return 1;
-        }
-
-        int prev1 = 1;
-        int prev2 = 0;
-        int prev3 = 0;
-        int actual = 1;
-
-        System.out.println(prev3);
-        System.out.println(prev2);
-        System.out.println(prev1);
-        for (int i = 3; i < n; i++) {
-
-            actual = prev1 + prev2 + prev3;
-            System.out.println(actual);
-
-            prev3 = prev2;
-            prev2 = prev1;
-            prev1 = actual;
-        }
-        return actual;
-    }
-
-    public static int nwdModRecursive(int a, int b) {
-        if (b != 0)
-            return nwdModRecursive(b, a % b);
-        return a;
-    }
-
     /**
      * <a href="http://pl.spoj.com/problems/EUCGAME/">Gra Euklidesa - SPOJ</a>
      */
-    private static void graEukl() {
+    public static void graEukl() {
         int t = s.nextInt();
 
         for (int i = 0; i < t; i++) {
             int a = s.nextInt();
             int b = s.nextInt();
 
-            // NWD
-            // || lub
-            // && i
-            while (a != b) {
-                if (a > b) {
-                    a -= b;
-                } else {
-                    b -= a;
-                }
-            }
+            int result = PureFunctions.nwdMod(a, b);
 
-            System.out.println(a + b);
+            System.out.println(result * 2);
         }
-    }
-
-    /**
-     * Zadanie z
-     * http://pl.spoj.com/problems/PTCLTZ/
-     */
-    public static int collatz(int s) {
-        int x = s;
-        int i = 1;
-        while (x != 1) {
-            if (x % 2 != 0) {
-                x = (3 * x) + 1;
-            } else {
-                x = x / 2;
-            }
-            i++;
-        }
-        i--;
-        return i;
-    }
-
-    public static int[] rozlozNaCzynniki(int n) {
-        int k = 2;
-        List<Integer> list = new ArrayList<>();
-        while (n > 1) {
-            while (n % k == 0) {
-                list.add(k);
-                n /= k;
-            }
-            k++;
-        }
-        return CollectionsUtils.toIntArray(list);
     }
 
     /**
@@ -668,7 +436,7 @@ public class AlgorytmyMaturalne {
      *
      * @param input wartosc reszty do wydania
      */
-    private static void wydajReszte(int input) {
+    public static void wydajReszte(int input) {
         int[] nominaly = {20000, 10000, 5000, 2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1};
         System.out.println("Podaj resztę do wydania w groszach");
         int reszta = input;
@@ -685,54 +453,6 @@ public class AlgorytmyMaturalne {
             System.out.println("Wydaje:" + ilosc + "x" + odpowiedniNominal);
             reszta -= odpowiedniNominal * ilosc;
         }
-    }
-
-    public static int factorialRecursive(int n) {
-        if (n == 1 || n == 0) return 1;
-        else {
-            return n * factorialRecursive(n - 1);
-        }
-    }
-
-    public static int factiorialIterational(int n) {
-        if (n == 1) return 1;
-        int wynik = 2;
-        for (int i = 1; i < n; i++) {
-            wynik *= i;
-        }
-        return wynik;
-    }
-
-    public static int fibbonacciRecursive(int n) {
-        if (n == 1 || n == 2) return 1;
-        else {
-            return fibbonacciRecursive(n - 1) + fibbonacciRecursive(n - 2);
-        }
-    }
-
-    public static int fibbonacciIterational(int n) {
-        if (n == 1 || n == 2) return 1;
-        int prev = 1;
-        int prevprev = 1;
-        int actual = 1;
-
-        for (int i = 2; i < n; i++) {
-            actual = prev + prevprev;
-            prevprev = prev;
-            prev = actual;
-        }
-        return actual;
-    }
-
-    public static String decToBin(int x) {
-        StringBuilder sb = new StringBuilder();
-
-        while (x != 0) {
-            sb.append((x % 2));
-            x /= 2;
-        }
-        return sb.reverse().toString();
-
     }
 
     /**
@@ -781,7 +501,7 @@ public class AlgorytmyMaturalne {
         return sb;
     }
 
-    private static class Point implements Comparable<Point> {
+    public static class Point implements Comparable<Point> {
         public String name;
         public int x;
         public int y;
@@ -894,9 +614,9 @@ public class AlgorytmyMaturalne {
         }
 
         public static void wyswietl(int[][] tab) {
-            for (int i = 0; i < tab.length; i++) {
-                for (int j = 0; j < tab[i].length; j++) {
-                    System.out.print(padRight(String.valueOf(tab[i][j]), 3));
+            for (int[] aTab : tab) {
+                for (int anATab : aTab) {
+                    System.out.print(padRight(String.valueOf(anATab), 3));
                 }
                 System.out.println();
             }
@@ -910,7 +630,7 @@ public class AlgorytmyMaturalne {
             for (int test = 0; test < t; test++) {
                 String a = s.next();
                 String b = s.next();
-                System.out.println(stringMerge(a, b));
+                System.out.println(PureFunctions.stringMerge(a, b));
             }
         }
 
@@ -930,7 +650,7 @@ public class AlgorytmyMaturalne {
             int t = s.nextInt();
             for (int i = 0; i < t; i++) {
                 String str = s.next();
-                System.out.println(czyPalindrom(str.replace(" ", "")) ? "t" : "n");
+                System.out.println(PureFunctions.czyPalindrom(str.replace(" ", "")) ? "t" : "n");
             }
         }
 
@@ -960,7 +680,7 @@ public class AlgorytmyMaturalne {
             int a = s.nextInt();
             int b = s.nextInt();
 
-            boolean ascending = isArrayAscending(T, a, b);
+            boolean ascending = PureFunctions.isArrayAscending(T, a, b);
             System.out.println(ascending);
         }
 
