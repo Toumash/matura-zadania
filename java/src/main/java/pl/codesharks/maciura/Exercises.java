@@ -179,7 +179,6 @@ public class Exercises {
         }
     }
 
-
     /**
      * <a href="http://youngcoder.eu/index.php/node/show/17500">Youngcoder - klasy adresow IP</a>
      */
@@ -508,6 +507,10 @@ public class Exercises {
 
         @Override
         public int compareTo(Point o) {
+            if (null == o) {
+                throw new IllegalArgumentException("Cannot compare to null value");
+            }
+
             double dist1 = Math.sqrt(x * x + y * y);
             double dist2 = Math.sqrt(o.x * o.x + o.y * o.y);
 
