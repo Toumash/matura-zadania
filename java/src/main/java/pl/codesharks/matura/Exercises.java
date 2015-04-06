@@ -650,7 +650,7 @@ public class Exercises {
             int t = s.nextInt();
             for (int i = 0; i < t; i++) {
                 String str = s.next();
-                System.out.println(PureFunctions.czyPalindrom(str.replace(" ", "")) ? "t" : "n");
+                System.out.println(PureFunctions.isPalindrome(str.replace(" ", "")) ? "t" : "n");
             }
         }
 

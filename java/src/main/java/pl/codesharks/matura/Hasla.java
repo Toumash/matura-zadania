@@ -32,6 +32,7 @@ public class Hasla {
         for (int i = 0; i < str.length() / 2; i++) {
             if (str.charAt(i) != str.charAt(str.length() - i - 1)) {
                 czyJest = false;
+                break;
             }
         }
         return czyJest;
@@ -189,7 +190,7 @@ public class Hasla {
     }
 
     public String longestFirstPalindrom(String str) {
-        String sbstr = "";
+        String sbstr;
         String palindrom = "";
         for (int i = 0; i < str.length(); i++) {
             sbstr = str.substring(0, i);

@@ -133,9 +133,20 @@ public class PureFunctions {
 
     }
 
-    public static boolean czyPalindrom(String a) {
+    public static boolean isPalindrome(String a) {
         StringBuilder sb = new StringBuilder(a);
         return a.equals(sb.reverse().toString());
+    }
+
+    public static boolean isPalindromeFaster(String a) {
+        boolean palindrome = true;
+        for (int i = 0,length = a.length(); i < length; i++) {
+            if(a.charAt(i)!=a.charAt(length-i-1)){
+                palindrome = false;
+                break;
+            }
+        }
+        return palindrome;
     }
 
     /**

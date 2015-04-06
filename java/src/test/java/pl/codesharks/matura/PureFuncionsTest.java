@@ -47,8 +47,8 @@ public class PureFuncionsTest {
 
     @Test
     public void testFibbonacciRecursive() throws Exception {
-        Integer[] t = {1, 2, 3, 4, 5, 6, 7};
-        Integer[] s = {1, 1, 2, 3, 5, 8, 13};
+        Integer[] t = Data.tFibbonacci;
+        Integer[] s = Data.sFibbonacci;
 
         EqualsTestCase<Integer, Integer> testCase = EqualsTestCase.create();
         TestCommand<Integer, Integer> command = PureFunctions::fibbonacciRecursive;
@@ -58,8 +58,8 @@ public class PureFuncionsTest {
 
     @Test
     public void testFibbonacciIterational() throws Exception {
-        Integer[] t = {1, 2, 3, 4, 5, 6, 7};
-        Integer[] s = {1, 1, 2, 3, 5, 8, 13};
+        Integer[] t = Data.tFibbonacci;
+        Integer[] s = Data.sFibbonacci;
 
         EqualsTestCase<Integer, Integer> testCase = EqualsTestCase.create();
 
@@ -87,18 +87,24 @@ public class PureFuncionsTest {
 
     @Test
     public void testNwdSubtract() throws Exception {
-        assertEquals(2, PureFunctions.nwdSubtract(10, 2));
-        assertEquals(5, PureFunctions.nwdSubtract(10, 5));
-        assertEquals(25, PureFunctions.nwdSubtract(125, 25));
-        assertEquals(6, PureFunctions.nwdSubtract(30, 6));
+        Integer[][] t = Data.tNwd;
+        Integer[] s = Data.sNwd;
+
+        EqualsTestCase<Pair<Integer, Integer>, Integer> tc = EqualsTestCase.create();
+        TestCommand<Pair<Integer, Integer>, Integer> command = (p) -> PureFunctions.nwdMod(p.getKey(), p.getValue());
+
+        tc.test(Collections.toPairArrayList(t), Collections.toArrayList(s), command);
     }
 
     @Test
     public void testNwdMod() throws Exception {
-        assertEquals(2, PureFunctions.nwdMod(10, 2));
-        assertEquals(5, PureFunctions.nwdMod(10, 5));
-        assertEquals(25, PureFunctions.nwdMod(125, 25));
-        assertEquals(6, PureFunctions.nwdMod(30, 6));
+        Integer[][] t = Data.tNwd;
+        Integer[] s = Data.sNwd;
+
+        EqualsTestCase<Pair<Integer, Integer>, Integer> tc = EqualsTestCase.create();
+        TestCommand<Pair<Integer, Integer>, Integer> command = (p) -> PureFunctions.nwdMod(p.getKey(), p.getValue());
+
+        tc.test(Collections.toPairArrayList(t), Collections.toArrayList(s), command);
     }
 
     @Test
@@ -129,10 +135,9 @@ public class PureFuncionsTest {
         ArrayList<Pair<String, String>> arr = Collections.toPairArrayList(t);
 
         EqualsTestCase<Pair<String, String>, String> tc = EqualsTestCase.create();
+        TestCommand<Pair<String, String>, String> command = (x) -> PureFunctions.stringMerge(x.getKey(), x.getValue());
 
-        tc.test(arr, Collections.toArrayList(s), x -> {
-            return PureFunctions.stringMerge(x.getKey(), x.getValue());
-        });
+        tc.test(arr, Collections.toArrayList(s), command);
     }
 
     @Test
@@ -143,5 +148,37 @@ public class PureFuncionsTest {
         EqualsTestCase<Character, Integer> tc = EqualsTestCase.create();
 
         tc.test(t, s, PureFunctions::convertToInt);
+    }
+
+    @Test
+    public void testIsPalindrome() throws Exception {
+        String[] t = Data.tPalindrome;
+        Boolean[] s = Data.sPalindrome;
+
+        EqualsTestCase<String, Boolean> tc = EqualsTestCase.create();
+
+        tc.test(t, s, PureFunctions::isPalindrome);
+    }
+
+    @Test
+    public void testIsPalindromeFaster() throws Exception {
+        String[] t = Data.tPalindrome;
+        Boolean[] s = Data.sPalindrome;
+
+        EqualsTestCase<String, Boolean> tc = EqualsTestCase.create();
+
+        tc.test(t, s, PureFunctions::isPalindrome);
+    }
+
+    protected static class Data {
+        public static final String[] tPalindrome = {"KONIK", "ANNA", "OKO", "ZXZ"};
+        public static final Boolean[] sPalindrome = {false, true, true, true};
+
+        public static final Integer[][] tNwd = {{10, 2}, {10, 5}, {125, 25}, {30, 6}};
+        public static final Integer[] sNwd = {2, 5, 25, 6};
+
+        public static final Integer[] tFibbonacci = {1, 2, 3, 4, 5, 6, 7};
+        public static final Integer[] sFibbonacci = {1, 1, 2, 3, 5, 8, 13};
+
     }
 }

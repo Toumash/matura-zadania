@@ -8,7 +8,7 @@ dir "src\main\*.java" /s /b >files.txt
 
 
 @rem compile
-"%JAVA_HOME%\bin\javac.exe" -encoding utf8 @files.txt -d classes
+"%JAVA_HOME%\bin\javac.exe" -encoding utf8 @files.txt -d target\classes
 @echo off
 echo "Jeśli kompilacja przebiegła pomyślnie, kliknij dowolny klawisz"
 pause >nul
