@@ -80,6 +80,7 @@ public class Wybory {
                 komitety[j] += aTab[j];
             }
         }
+
         return komitety;
     }
 

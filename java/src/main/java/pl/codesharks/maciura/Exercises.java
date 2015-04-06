@@ -12,11 +12,8 @@ public class Exercises {
      * Locale ENGLISH to workaround errors in floating-point numbers
      * delimited by "," (as in Poland) not "." (World standard)
      */
-    protected static Scanner s = new Scanner(System.in).useLocale(Locale.ENGLISH);
-
-    public static void main(String[] args) {
-    }
-
+    public static Scanner s = new Scanner(System.in).useLocale(Locale.ENGLISH);
+    
     /**
      * <a href="http://pl.spoj.com/problems/MWPZ06X/"> Nowa działka - SPOJ</a>
      * wylicza kwadraty wpisywanych liczb
