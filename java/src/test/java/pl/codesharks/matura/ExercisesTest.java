@@ -1,7 +1,7 @@
-package pl.codesharks.maciura;
+package pl.codesharks.matura;
 
 import org.junit.Test;
-import pl.codesharks.maciura.util.EqualsTestCase;
+import pl.codesharks.matura.util.EqualsTestCase;
 
 @SuppressWarnings("SpellCheckingInspection")
 public class ExercisesTest {

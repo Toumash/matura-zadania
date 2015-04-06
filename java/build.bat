@@ -22,6 +22,6 @@ cls
 
 
 @echo on
-java pl.codesharks.maciura.Main
+java pl.codesharks.matura.Main
 @echo off
 pause

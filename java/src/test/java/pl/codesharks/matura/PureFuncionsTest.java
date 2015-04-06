@@ -1,10 +1,10 @@
-package pl.codesharks.maciura;
+package pl.codesharks.matura;
 
 import org.junit.Test;
-import pl.codesharks.maciura.util.Collections;
-import pl.codesharks.maciura.util.EqualsTestCase;
-import pl.codesharks.maciura.util.Pair;
-import pl.codesharks.maciura.util.TestCommand;
+import pl.codesharks.matura.util.Collections;
+import pl.codesharks.matura.util.EqualsTestCase;
+import pl.codesharks.matura.util.Pair;
+import pl.codesharks.matura.util.TestCommand;
 
 import java.util.ArrayList;
 

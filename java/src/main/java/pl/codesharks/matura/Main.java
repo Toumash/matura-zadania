@@ -1,4 +1,4 @@
-package pl.codesharks.maciura;
+package pl.codesharks.matura;
 
 
 public class Main {

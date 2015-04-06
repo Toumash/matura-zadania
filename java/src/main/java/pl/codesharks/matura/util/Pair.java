@@ -1,4 +1,4 @@
-package pl.codesharks.maciura.util;
+package pl.codesharks.matura.util;
 
 public class Pair<K, V> {
     private K key;

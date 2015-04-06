@@ -1,6 +1,6 @@
-package pl.codesharks.maciura;
+package pl.codesharks.matura;
 
-import pl.codesharks.maciura.util.Pair;
+import pl.codesharks.matura.util.Pair;
 
 import java.util.ArrayList;
 import java.util.Arrays;

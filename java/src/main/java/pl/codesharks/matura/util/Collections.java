@@ -1,4 +1,4 @@
-package pl.codesharks.maciura.util;
+package pl.codesharks.matura.util;
 
 
 import java.util.ArrayList;
