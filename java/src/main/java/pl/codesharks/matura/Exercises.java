@@ -13,7 +13,7 @@ public class Exercises {
      * delimited by "," (as in Poland) not "." (World standard)
      */
     public static Scanner s = new Scanner(System.in).useLocale(Locale.ENGLISH);
-    
+
     /**
      * <a href="http://pl.spoj.com/problems/MWPZ06X/"> Nowa działka - SPOJ</a>
      * wylicza kwadraty wpisywanych liczb
@@ -496,6 +496,78 @@ public class Exercises {
         }
         return sb;
     }
+
+
+    public static int graEuklidesa(int a, int b) {
+
+        while (a != b) {
+            if (a > b) {
+                a = a - b;
+            } else {
+                b = b - a;
+            }
+        }
+        return a * 2;
+    }
+
+    public static void sortowaniePunktow() {
+        int t;
+        int n;
+        t = s.nextInt();
+
+        for (int i = 0; i < t; i++) {
+            n = s.nextInt();
+            Punkt[] T = new Punkt[n];
+            for (int j = 0; j < n; j++) {
+                int x, y;
+                String nazwa;
+                nazwa = s.next();
+                x = s.nextInt();
+                y = s.nextInt();
+
+                Punkt p = new Punkt();
+                p.x = x;
+                p.y = y;
+                p.nazwa = nazwa;
+                T[j] = p;
+            }
+
+            for (int j = 0; j < n; j++) {
+                for (int k = 1; k < n; k++) {
+                    if (T[k - 1].dystans() > T[k].dystans()) {
+                        Punkt tmp = T[k - 1];
+                        T[k - 1] = T[k];
+                        T[k] = tmp;
+                    }
+                }
+            }
+            for (int j = 0; i < T.length; j++) {
+                System.out.println(T[j].toString());
+
+            }
+            System.out.println("Koniec testu #" + (i + 1));
+
+
+        }
+
+
+    }
+
+    static class Punkt {
+        int x;
+        int y;
+        String nazwa;
+
+        public double dystans() {
+            return Math.sqrt(x * x + y * y);
+        }
+
+        @Override
+        public String toString() {
+            return nazwa + " " + x + " " + y;
+        }
+    }
+
 
     public static class Point implements Comparable<Point> {
         public String name;
