@@ -105,6 +105,20 @@ public class PureFunctions {
         return actual;
     }
 
+    public static int fastPower(int x, int m) {
+        String liczba = decToBin(m);
+        //noinspection SuspiciousNameCombination
+        int y = x;
+        for (int i = 0; i < liczba.length(); i++) {
+            if (liczba.charAt(i) == '1') {
+                y = y * y * x;
+            } else {
+                y *= y;
+            }
+        }
+        return y;
+    }
+
     public static int nwdModRecursive(int a, int b) {
         if (b != 0)
             return nwdModRecursive(b, a % b);
@@ -140,8 +154,8 @@ public class PureFunctions {
 
     public static boolean isPalindromeFaster(String a) {
         boolean palindrome = true;
-        for (int i = 0,length = a.length(); i < length; i++) {
-            if(a.charAt(i)!=a.charAt(length-i-1)){
+        for (int i = 0, length = a.length(); i < length; i++) {
+            if (a.charAt(i) != a.charAt(length - i - 1)) {
                 palindrome = false;
                 break;
             }
