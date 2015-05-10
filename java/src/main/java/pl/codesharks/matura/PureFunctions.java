@@ -105,18 +105,25 @@ public class PureFunctions {
         return actual;
     }
 
+    /**
+     * <a href="http://pl.wikipedia.org/wiki/Algorytm_szybkiego_pot%C4%99gowania">Wikipedia - Fast powering</a>
+     *
+     * @param x number to power
+     * @param m power of the number
+     * @return x^m
+     */
     public static int fastPower(int x, int m) {
         String liczba = decToBin(m);
         //noinspection SuspiciousNameCombination
-        int y = x;
+        int wynik = x;
         for (int i = 0; i < liczba.length(); i++) {
             if (liczba.charAt(i) == '1') {
-                y = y * y * x;
+                wynik *= wynik * x;
             } else {
-                y *= y;
+                wynik *= wynik;
             }
         }
-        return y;
+        return wynik;
     }
 
     public static int nwdModRecursive(int a, int b) {
@@ -139,8 +146,8 @@ public class PureFunctions {
             return true;
         }
 
-        int sq = (int) Math.ceil(Math.sqrt(n));
-        for (int i = 2; i <= sq; i++) {
+        int squareRoot = (int) Math.ceil(Math.sqrt(n));
+        for (int i = 2; i <= squareRoot; i++) {
             if (n % i == 0) return false;
         }
         return true;
@@ -338,5 +345,23 @@ public class PureFunctions {
             sb.append(words[i]).append(" ");
         }
         return sb.toString();
+    }
+
+    /**
+     * <a href="http://edu.i-lo.tarnow.pl/inf/alg/003_sort/0010.php">Insertion Sort - Explanation</a>
+     *
+     * @param tab array to be sorted
+     */
+    public static int[] insertionSort(final int[] tab) {
+        for (int j = tab.length - 2; j >= 0; j--) {
+            int x = tab[j];
+            int i = j + 1;
+            while (i <= tab.length - 1 && x > tab[i]) {
+                tab[i - 1] = tab[i];
+                i++;
+            }
+            tab[i - 1] = x;
+        }
+        return tab;
     }
 }

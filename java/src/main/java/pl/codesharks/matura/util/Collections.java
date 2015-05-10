@@ -18,6 +18,14 @@ public class Collections {
         return intArray;
     }
 
+    public static int[] toIntArray(Integer[] tab) {
+        int[] result = new int[tab.length];
+        for (int i = 0, length = tab.length; i < length; i++) {
+            result[i] = tab[i];
+        }
+        return result;
+    }
+
     /**
      * Converts one dimensional array of type <code>T</code> to <code>ArrayList<T></code>
      */

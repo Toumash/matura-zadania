@@ -25,13 +25,10 @@ public class Anagramy {
                     i++;
                 }
                 return true;
-
-
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
             return false;
-
         }
         return false;
     }

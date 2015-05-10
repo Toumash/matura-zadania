@@ -7,7 +7,10 @@ import pl.codesharks.matura.util.Pair;
 import pl.codesharks.matura.util.TestCommand;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 @SuppressWarnings("SpellCheckingInspection")
@@ -168,6 +171,42 @@ public class PureFuncionsTest {
         EqualsTestCase<String, Boolean> tc = EqualsTestCase.create();
 
         tc.test(t, s, PureFunctions::isPalindrome);
+    }
+
+    @Test
+    public void testInsertionSort() throws Exception {
+        //generating random data
+        final int[][] test = new int[100][100];
+        Random rand = new Random(System.nanoTime());
+        int[] t = new int[100];
+        for (int j = 0; j < test.length; j++) {
+            for (int i = 0; i < t.length; i++) {
+                t[i] = rand.nextInt();
+            }
+            test[j] = t;
+        }
+        //computing expected values
+        final int[][] expected = new int[test.length][test[0].length];
+        int[] s;
+        for (int i = 0; i < test.length; i++) {
+            s = test[i].clone();
+            Arrays.sort(s);
+            expected[i] = s;
+        }
+
+        //computing real output
+        final int[][] actual = new int[test.length][test[0].length];
+        int[] result;
+        for (int i = 0; i < actual.length; i++) {
+            result = PureFunctions.insertionSort(test[i]);
+            actual[i] = result;
+        }
+
+        //check fo equality
+        for (int i = 0; i < test.length; i++) {
+            assertArrayEquals(expected[i], actual[i]);
+        }
+
     }
 
     protected static class Data {
