@@ -348,20 +348,42 @@ public class PureFunctions {
     }
 
     /**
-     * <a href="http://edu.i-lo.tarnow.pl/inf/alg/003_sort/0010.php">Insertion Sort - Explanation</a>
+     * <a href="http://edu.i-lo.tarnow.pl/inf/alg/003_sort/0010.php">Insertion Sort - Explanation</a><br>
+     * Normal O(n*lg(n))<br>
+     * Worst-case O(n^2)
      *
-     * @param tab array to be sorted
+     * @param array array to be sorted
      */
-    public static int[] insertionSort(final int[] tab) {
-        for (int j = tab.length - 2; j >= 0; j--) {
-            int x = tab[j];
+    public static int[] insertionSort(final int[] array) {
+        for (int j = array.length - 2; j >= 0; j--) {
+            int x = array[j];
             int i = j + 1;
-            while (i <= tab.length - 1 && x > tab[i]) {
-                tab[i - 1] = tab[i];
+            while (i <= array.length - 1 && x > array[i]) {
+                array[i - 1] = array[i];
                 i++;
             }
-            tab[i - 1] = x;
+            array[i - 1] = x;
         }
-        return tab;
+        return array;
+    }
+
+    /**
+     * <a href="http://pl.wikipedia.org/wiki/Sortowanie_b%C4%85belkowe">Wikipedia - Bubble Sort</a> <br>
+     * Normal O(n^2)
+     *
+     * @param array array to be sorted
+     * @return sorted array
+     */
+    public static int[] bubbleSort(final int[] array) {
+        for (int i = 0, length = array.length; i < length; i++) {
+            for (int j = 1; j < length; j++) {
+                if (array[j] < array[j - 1]) {
+                    int tmp = array[j];
+                    array[j] = array[j - 1];
+                    array[j - 1] = tmp;
+                }
+            }
+        }
+        return array;
     }
 }

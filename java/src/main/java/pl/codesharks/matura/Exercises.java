@@ -1,7 +1,8 @@
 package pl.codesharks.matura;
 
 
-import java.util.Arrays;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -94,35 +95,6 @@ public class Exercises {
                 break;
             }
             prev = x;
-        }
-
-    }
-
-    /**
-     * <a href="http://pl.spoj.com/problems/PP0506A/">Sortowanie punktów - SPOJ</a>
-     * Sortuje punkty w zaleznosci od odległości od środka układu współrzędnych
-     */
-    public static void sortujPunkty() {
-        int t = s.nextInt();
-
-        for (int i = 0; i < t; i++) {
-            int n = s.nextInt();
-            Point[] tab = new Point[n];
-
-            for (int j = 0; j < n; j++) {
-                Point tmp = new Point();
-                tmp.name = s.next();
-                tmp.x = s.nextInt();
-                tmp.y = s.nextInt();
-                tab[j] = tmp;
-            }
-
-            Arrays.sort(tab);
-
-            for (int j = 0; j < n; j++) {
-                System.out.println(tab[j]);
-            }
-            System.out.println();
         }
     }
 
@@ -319,7 +291,6 @@ public class Exercises {
         suma += s.nextInt();
 
         System.out.println(suma % 3 == 0 ? "TAK" : "NIE");
-
     }
 
     /**
@@ -452,6 +423,52 @@ public class Exercises {
     }
 
     /**
+     * <a href="http://pl.spoj.com/problems/PTWPZ083/">SPOJ - Prosty kalkulator</a><br>
+     * Kalkulator - pierwsza liczba potem znak '+' lub '-' itd.
+     *
+     * @param input równanie do wywołania
+     * @return wynik działania
+     */
+    public static int prostyKalkulator(String input) {
+        final char Z_PLUS = '+';
+        final char Z_MINUS = '-';
+
+        int sum = 0;
+        char character = Z_PLUS;
+        for (int i = 0; i < input.length(); i++) {
+            char actualCharacter = input.charAt(i);
+
+            //Co drugi element to liczba zaczynając od 0
+            if (i % 2 == 0) {
+                int number = actualCharacter - '0';
+                //znak == Z_PLUS dodaj number
+                //w przeciwnym wypadku dodaj ujemny number
+                sum += (character == Z_PLUS) ? number : -number;
+            } else {
+                character = input.charAt(i);
+            }
+        }
+        return sum;
+    }
+
+    /**
+     * <a href="http://pl.spoj.com/problems/PP0602A/">SPOJ - Parzyste Nieparzyste</a>
+     */
+    public static int[] parzysteNieparzyste(final int[] numbers) {
+        int[] shuffled = new int[numbers.length];
+        int index = 0;
+        for (int i = 1; i < numbers.length; i += 2) {
+            shuffled[index] = numbers[i];
+            index++;
+        }
+        for (int i = 0, length = numbers.length; i < length; i += 2) {
+            shuffled[index] = numbers[i];
+            index++;
+        }
+        return shuffled;
+    }
+
+    /**
      * Oblicza sumę wpisywanych liczb, dopóki nie zostanie wprowadzona liczba
      * większa od 50
      *
@@ -510,6 +527,10 @@ public class Exercises {
         return a * 2;
     }
 
+    /**
+     * <a href="http://pl.spoj.com/problems/PP0506A/">Sortowanie punktów - SPOJ</a>
+     * Sortuje punkty w zaleznosci od odległości od środka układu współrzędnych
+     */
     public static void sortowaniePunktow() {
         int t;
         int n;
@@ -517,7 +538,7 @@ public class Exercises {
 
         for (int i = 0; i < t; i++) {
             n = s.nextInt();
-            Punkt[] T = new Punkt[n];
+            Point[] T = new Point[n];
             for (int j = 0; j < n; j++) {
                 int x, y;
                 String nazwa;
@@ -525,17 +546,15 @@ public class Exercises {
                 x = s.nextInt();
                 y = s.nextInt();
 
-                Punkt p = new Punkt();
-                p.x = x;
-                p.y = y;
-                p.nazwa = nazwa;
+                Point p = new Point(nazwa, x, y);
                 T[j] = p;
             }
 
+            //Bubble sort
             for (int j = 0; j < n; j++) {
                 for (int k = 1; k < n; k++) {
-                    if (T[k - 1].dystans() > T[k].dystans()) {
-                        Punkt tmp = T[k - 1];
+                    if (T[k - 1].distance() > T[k].distance()) {
+                        Point tmp = T[k - 1];
                         T[k - 1] = T[k];
                         T[k] = tmp;
                     }
@@ -545,43 +564,28 @@ public class Exercises {
                 System.out.println(T[j].toString());
 
             }
-            System.out.println("Koniec testu #" + (i + 1));
-
-
-        }
-
-
-    }
-
-    static class Punkt {
-        int x;
-        int y;
-        String nazwa;
-
-        public double dystans() {
-            return Math.sqrt(x * x + y * y);
-        }
-
-        @Override
-        public String toString() {
-            return nazwa + " " + x + " " + y;
         }
     }
-
 
     public static class Point implements Comparable<Point> {
         public String name;
-        public int x;
-        public int y;
+        public int mX;
+        public int mY;
+
+        public Point(String name, int x, int y) {
+            this.name = name;
+            this.mX = x;
+            this.mY = y;
+        }
+
+        public double distance() {
+            return Math.sqrt(mX * mX + mY * mY);
+        }
 
         @Override
-        public int compareTo(Point o) {
-            if (null == o) {
-                throw new IllegalArgumentException("Cannot compare to null value");
-            }
-
-            double dist1 = Math.sqrt(x * x + y * y);
-            double dist2 = Math.sqrt(o.x * o.x + o.y * o.y);
+        public int compareTo(@NotNull Point o) {
+            double dist1 = this.distance();
+            double dist2 = o.distance();
 
             if (dist1 > dist2) {
                 return 1;
@@ -592,12 +596,12 @@ public class Exercises {
 
         @Override
         public String toString() {
-            return name + " " + x + " " + y;
+            return name + " " + mX + " " + mY;
         }
     }
 
     /**
-     * Zwyka obudowana caa implementacja kolka i krzyzyk
+     * Zwykła obudowana caa implementacja kolka i krzyzyk
      */
     public static class TicTacToe {
 

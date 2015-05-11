@@ -175,7 +175,7 @@ public class PureFuncionsTest {
 
     @Test
     public void testInsertionSort() throws Exception {
-        //generating random data
+        //random data
         final int[][] test = new int[100][100];
         Random rand = new Random(System.nanoTime());
         int[] t = new int[100];
@@ -185,7 +185,7 @@ public class PureFuncionsTest {
             }
             test[j] = t;
         }
-        //computing expected values
+        //expected values
         final int[][] expected = new int[test.length][test[0].length];
         int[] s;
         for (int i = 0; i < test.length; i++) {
@@ -194,11 +194,48 @@ public class PureFuncionsTest {
             expected[i] = s;
         }
 
-        //computing real output
+        //actual output
         final int[][] actual = new int[test.length][test[0].length];
         int[] result;
         for (int i = 0; i < actual.length; i++) {
             result = PureFunctions.insertionSort(test[i]);
+            actual[i] = result;
+        }
+
+        //check fo equality
+        for (int i = 0; i < test.length; i++) {
+            assertArrayEquals(expected[i], actual[i]);
+        }
+
+    }
+
+    @Test
+    public void testBubbleSort() throws Exception {
+        //random data
+        final int[][] test = new int[100][100];
+        Random rand = new Random(System.nanoTime());
+        int[] t = new int[100];
+        for (int j = 0; j < test.length; j++) {
+            for (int i = 0; i < t.length; i++) {
+                t[i] = rand.nextInt();
+            }
+            test[j] = t;
+        }
+
+        // expected values
+        final int[][] expected = new int[test.length][test[0].length];
+        int[] s;
+        for (int i = 0; i < test.length; i++) {
+            s = test[i].clone();
+            Arrays.sort(s);
+            expected[i] = s;
+        }
+
+        //actual output
+        final int[][] actual = new int[test.length][test[0].length];
+        int[] result;
+        for (int i = 0; i < actual.length; i++) {
+            result = PureFunctions.bubbleSort(test[i]);
             actual[i] = result;
         }
 
