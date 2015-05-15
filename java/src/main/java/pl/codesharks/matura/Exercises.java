@@ -26,7 +26,52 @@ public class Exercises {
             System.out.println(n * n);
         }
     }
+    
+   /**
+     * <a href="http://pl.spoj.com/problems/BFN1/">SPOJ - Dodawanie piotrusia</a>
+     */
+    public static void piotrus() {
+        final int t = Integer.valueOf(s.nextLine());
+        for (int i = 0; i < t; i++) {
 
+            String input = s.nextLine();
+
+            if (czyPalndrom(input)) {
+                System.out.println(input + " " + 0);
+            } else {
+                int n = 0;
+                String w = input;
+                int wynik;
+                while (true) {
+                    n++;
+                    wynik = Integer.valueOf(new StringBuilder(w).reverse().toString()) + Integer.valueOf(w);
+                    w = String.valueOf(wynik);
+                    if (czyPalndrom(w)) {
+                        break;
+                    }
+                }
+                System.out.println(w + " " + n);
+            }
+        }
+    }  
+    public static boolean czyPalndrom(String x) {
+        return new StringBuilder(x).reverse().toString().equals(x);
+    }
+
+
+    public static void szyfrCezara() {
+        final int CEZAR_PRZESUNIECIE = 3;
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNextLine()) {
+            String input = scanner.nextLine();
+            StringBuilder sb = new StringBuilder();
+            for (int j = 0; j < input.length(); j++) {
+                sb.append(cez(input.charAt(j), CEZAR_PRZESUNIECIE));
+            }
+            System.out.println(sb.toString());
+        }
+    }
+    
     /**
      * <a href="http://pl.spoj.com/problems/NIEKOLEJ/">NIEKOLEJ - SPOJ</a>
      * wyswietla ciag liczb 1...n tak, aby obok każdej liczby delta sąsiada != 1
