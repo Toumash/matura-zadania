@@ -8,6 +8,30 @@ import java.util.Arrays;
 @SuppressWarnings({"UnusedDeclaration", "SpellCheckingInspection"})
 public class PureFunctions {
     /**
+     * <a href="http://pl.spoj.com/problems/JSPACE/">SPOJ - JSPACE</a>
+     *
+     * @return
+     */
+    public static String trimSpaces(String input) {
+        StringBuilder sb = new StringBuilder();
+        boolean upper = false;
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            if (c != ' ') {
+                if (Character.isAlphabetic(c) && upper) {
+                    sb.append(Character.toUpperCase(c));
+                } else {
+                    sb.append(c);
+                }
+                upper = false;
+            } else {
+                upper = true;
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
      * <a href="http://pl.spoj.com/problems/PTCLTZ/">Problem Colattza - SPOJ</a>
      */
     public static int collatz(int s) {

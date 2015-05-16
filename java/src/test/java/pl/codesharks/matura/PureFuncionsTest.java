@@ -246,6 +246,15 @@ public class PureFuncionsTest {
 
     }
 
+    @Test
+    public void testTrimSpaces() {
+        String[] t = {"", " ", "Dzisiaj jest czwartek,", "A jutro bedzie piatek."};
+        String[] s = {"", "", "DzisiajJestCzwartek,", "AJutroBedziePiatek."};
+
+        EqualsTestCase<String, String> etc = EqualsTestCase.create();
+        etc.test(t, s, PureFunctions::trimSpaces);
+    }
+
     protected static class Data {
         public static final String[] tPalindrome = {"KONIK", "ANNA", "OKO", "ZXZ"};
         public static final Boolean[] sPalindrome = {false, true, true, true};
