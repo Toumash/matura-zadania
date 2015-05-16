@@ -45,4 +45,13 @@ public class ExercisesTest {
             assertArrayEquals(Exercises.parzysteNieparzyste(t[i]), s[i]);
         }
     }
+
+    @Test
+    public void testKabalistyczneDaty() throws Exception {
+        String[] t = {"info", "miska", "abcdefghij"};
+        Integer[] s = {105, 140, 45};
+
+        EqualsTestCase<String, Integer> etc = EqualsTestCase.create();
+        etc.test(t, s, Exercises::kabalistyczneDaty);
+    }
 }

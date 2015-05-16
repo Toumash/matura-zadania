@@ -3,12 +3,12 @@ package pl.codesharks.matura;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Scanner;
 
 @SuppressWarnings({"UnusedDeclaration", "SpellCheckingInspection"})
 public class Exercises {
-
     /**
      * Locale ENGLISH to workaround errors in floating-point numbers
      * delimited by "," (as in Poland) not "." (World standard)
@@ -72,6 +72,37 @@ public class Exercises {
         }
     }
     
+    /**
+     * <a href="http://pl.spoj.com/problems/JZAPKAB/"> SPOJ - kabalistyczny sposob zapisu daty</a>
+     *
+     * @param input wyraz oznaczający date
+     * @return data odkodowana z wyrazu
+     */
+    public static int kabalistyczneDaty(String input) {
+        char[] litery = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'k', 'l', 'm',
+                'n', 'o', 'p', 'q', 'r', 's', 't', 'v', 'x', 'y', 'z'};
+        int[] wartosci = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30,
+                40, 50, 60, 70, 80, 90, 100, 250, 300, 400, 500};
+
+        if (litery.length != wartosci.length) {
+            throw new IllegalStateException("Niepoprawne przyporzadkowanie wartosci. Długości tablic są rózne");
+        }
+
+        //Przyporządkowanie liter do wartości
+        HashMap<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < litery.length; i++) {
+            map.put(litery[i], wartosci[i]);
+        }
+
+        int wynik = 0;
+        for (int i = 0; i < input.length(); i++) {
+            if (map.containsKey(input.charAt(i))) {
+                wynik += map.get(input.charAt(i));
+            }
+        }
+        return wynik;
+    }
+
     /**
      * <a href="http://pl.spoj.com/problems/NIEKOLEJ/">NIEKOLEJ - SPOJ</a>
      * wyswietla ciag liczb 1...n tak, aby obok każdej liczby delta sąsiada != 1
