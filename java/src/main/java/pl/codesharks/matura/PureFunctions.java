@@ -386,4 +386,33 @@ public class PureFunctions {
         }
         return array;
     }
+
+    /**
+     * Cesaurs encoding
+     *
+     * @param c character to be encoded
+     * @param n amount of characters in alphabet to move right
+     * @return cesaurs moved character
+     */
+    public static char cezar(char c, int n) {
+        //TODO: Dla dużych liter poza zakresem nie działa
+        int wynik = c;
+        if (c + n <= 'z' || c + n <= 'Z') {
+            wynik = c + n;
+        } else if (c >= 'a' && c <= 'z') {
+            wynik = 'a' + (n - ('z' - c)) - 1;
+        } else if (c >= 'A' && c <= 'Z') {
+            wynik = 'A' + (n - ('Z' - c)) - 1;
+        }
+        return (char) wynik;
+    }
+
+    public static String szyfrGronsfelda(String input, byte[] key) {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < input.length(); i++) {
+            sb.append(cezar(input.charAt(i), key[i % key.length]));
+        }
+        return sb.toString();
+    }
 }

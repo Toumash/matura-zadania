@@ -17,7 +17,7 @@ import static org.junit.Assert.assertEquals;
 public class PureFuncionsTest {
 
     @Test
-    public void testNWW() throws Exception {
+    public void testNWW() {
         Integer[][] t = {{1, 2}, {2, 10}, {100, 50}};
         Integer[] s = {2, 10, 100};
 
@@ -28,7 +28,7 @@ public class PureFuncionsTest {
     }
 
     @Test
-    public void testCzynniki() throws Exception {
+    public void testCzynniki() {
         Integer[] t = {1, 2, 3, 4, 5, 6, 7};
         Integer[][] s = {{}, {2}, {3}, {2, 2}, {5}, {2, 3}, {7}};
 
@@ -39,7 +39,7 @@ public class PureFuncionsTest {
     }
 
     @Test
-    public void testIsPrime() throws Exception {
+    public void testIsPrime() {
         Integer[] t = {1, 2, 3, 4, 5, 6, 7};
         Boolean[] s = {false, true, true, false, true, false, true};
 
@@ -49,7 +49,7 @@ public class PureFuncionsTest {
     }
 
     @Test
-    public void testFibbonacciRecursive() throws Exception {
+    public void testFibbonacciRecursive() {
         Integer[] t = Data.tFibbonacci;
         Integer[] s = Data.sFibbonacci;
 
@@ -60,7 +60,7 @@ public class PureFuncionsTest {
     }
 
     @Test
-    public void testFibbonacciIterational() throws Exception {
+    public void testFibbonacciIterational() {
         Integer[] t = Data.tFibbonacci;
         Integer[] s = Data.sFibbonacci;
 
@@ -70,7 +70,7 @@ public class PureFuncionsTest {
     }
 
     @Test
-    public void testNWDModRecursive() throws Exception {
+    public void testNWDModRecursive() {
         assertEquals(2, PureFunctions.nwdModRecursive(10, 2));
         assertEquals(5, PureFunctions.nwdModRecursive(10, 5));
         assertEquals(25, PureFunctions.nwdModRecursive(125, 25));
@@ -79,7 +79,7 @@ public class PureFuncionsTest {
     }
 
     @Test
-    public void testFactorial() throws Exception {
+    public void testFactorial() {
         Integer[] t = {1, 2, 3, 4, 5};
         Integer[] s = {1, 2, 6, 24, 120};
 
@@ -89,7 +89,7 @@ public class PureFuncionsTest {
     }
 
     @Test
-    public void testNwdSubtract() throws Exception {
+    public void testNwdSubtract() {
         Integer[][] t = Data.tNwd;
         Integer[] s = Data.sNwd;
 
@@ -100,7 +100,7 @@ public class PureFuncionsTest {
     }
 
     @Test
-    public void testNwdMod() throws Exception {
+    public void testNwdMod() {
         Integer[][] t = Data.tNwd;
         Integer[] s = Data.sNwd;
 
@@ -111,7 +111,7 @@ public class PureFuncionsTest {
     }
 
     @Test
-    public void testCollatz() throws Exception {
+    public void testCollatz() {
         Integer[] t = {1, 2, 8, 3, 567};
         Integer[] s = {0, 1, 3, 7, 61};
 
@@ -121,7 +121,7 @@ public class PureFuncionsTest {
     }
 
     @Test
-    public void testFactorialIterational() throws Exception {
+    public void testFactorialIterational() {
         Integer[] t = {1, 2, 3, 4, 5};
         Integer[] s = {1, 2, 6, 24, 120};
 
@@ -131,7 +131,7 @@ public class PureFuncionsTest {
     }
 
     @Test
-    public void testStringMerge() throws Exception {
+    public void testStringMerge() {
         String[][] t = {{"a", "bb"}, {"abs", "sfd"}, {"ewr", "w"}, {"wqeqweqweq", "eqweqwe"}};
         String[] s = {"ab", "asbfsd", "ew", "weqqewqewqewqe"};
 
@@ -144,7 +144,7 @@ public class PureFuncionsTest {
     }
 
     @Test
-    public void testConvertToInt() throws Exception {
+    public void testConvertToInt() {
         Character[] t = {'6', '9'};
         Integer[] s = {6, 9};
 
@@ -154,7 +154,7 @@ public class PureFuncionsTest {
     }
 
     @Test
-    public void testIsPalindrome() throws Exception {
+    public void testIsPalindrome() {
         String[] t = Data.tPalindrome;
         Boolean[] s = Data.sPalindrome;
 
@@ -164,7 +164,7 @@ public class PureFuncionsTest {
     }
 
     @Test
-    public void testIsPalindromeFaster() throws Exception {
+    public void testIsPalindromeFaster() {
         String[] t = Data.tPalindrome;
         Boolean[] s = Data.sPalindrome;
 
@@ -174,7 +174,7 @@ public class PureFuncionsTest {
     }
 
     @Test
-    public void testInsertionSort() throws Exception {
+    public void testInsertionSort() {
         //random data
         final int[][] test = new int[100][100];
         Random rand = new Random(System.nanoTime());
@@ -210,7 +210,7 @@ public class PureFuncionsTest {
     }
 
     @Test
-    public void testBubbleSort() throws Exception {
+    public void testBubbleSort() {
         //random data
         final int[][] test = new int[100][100];
         Random rand = new Random(System.nanoTime());

@@ -26,8 +26,32 @@ public class Exercises {
             System.out.println(n * n);
         }
     }
-    
-   /**
+
+    /**
+     * Liczy wyrazy i liczby w ciagu znaków
+     *
+     * @param linia ciąg z naków do policzenia
+     * @return tablica-> 0 - wyrazy <br>
+     * 1 - liczby
+     */
+    public static int[] zliczanieWyrazow(String linia) {
+        String[] linie = linia.split(" ");
+        int wyrazy = 0;
+        int liczby = 0;
+
+        for (int i = 0; i < linie.length; i++) {
+            try {
+                //noinspection ResultOfMethodCallIgnored
+                Integer.parseInt(linie[i]);
+                liczby++;
+            } catch (NumberFormatException e) {
+                wyrazy++;
+            }
+        }
+        return new int[]{wyrazy, liczby};
+    }
+
+    /**
      * <a href="http://pl.spoj.com/problems/BFN1/">SPOJ - Dodawanie piotrusia</a>
      */
     public static void piotrus() {
@@ -53,7 +77,8 @@ public class Exercises {
                 System.out.println(w + " " + n);
             }
         }
-    }  
+    }
+
     public static boolean czyPalndrom(String x) {
         return new StringBuilder(x).reverse().toString().equals(x);
     }
@@ -66,12 +91,12 @@ public class Exercises {
             String input = scanner.nextLine();
             StringBuilder sb = new StringBuilder();
             for (int j = 0; j < input.length(); j++) {
-                sb.append(cez(input.charAt(j), CEZAR_PRZESUNIECIE));
+                sb.append(PureFunctions.cezar(input.charAt(j), CEZAR_PRZESUNIECIE));
             }
             System.out.println(sb.toString());
         }
     }
-    
+
     /**
      * <a href="http://pl.spoj.com/problems/JZAPKAB/"> SPOJ - kabalistyczny sposob zapisu daty</a>
      *
@@ -79,9 +104,9 @@ public class Exercises {
      * @return data odkodowana z wyrazu
      */
     public static int kabalistyczneDaty(String input) {
-        char[] litery = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'k', 'l', 'm',
+        final char[] litery = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'k', 'l', 'm',
                 'n', 'o', 'p', 'q', 'r', 's', 't', 'v', 'x', 'y', 'z'};
-        int[] wartosci = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30,
+        final int[] wartosci = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30,
                 40, 50, 60, 70, 80, 90, 100, 250, 300, 400, 500};
 
         if (litery.length != wartosci.length) {
