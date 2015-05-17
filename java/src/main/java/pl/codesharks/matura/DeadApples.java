@@ -29,7 +29,7 @@ public class DeadApples {
 
             int[] r = logicLoop(zabijajacaPredkosc, ludzie);
             for (int j = 0; j < r.length; j++) {
-                System.out.println(i + ": " + r[i]);
+                System.out.println(j + ": " + r[i]);
             }
         }
     }

@@ -2,6 +2,7 @@ package pl.codesharks.matura;
 
 import pl.codesharks.matura.util.Pair;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -9,8 +10,6 @@ import java.util.Arrays;
 public class PureFunctions {
     /**
      * <a href="http://pl.spoj.com/problems/JSPACE/">SPOJ - JSPACE</a>
-     *
-     * @return
      */
     public static String trimSpaces(String input) {
         StringBuilder sb = new StringBuilder();
@@ -338,6 +337,14 @@ public class PureFunctions {
             wynik *= i;
         }
         return wynik;
+    }
+
+    public static BigDecimal factorialBig(int n) {
+        BigDecimal factorial = new BigDecimal(2);
+        for (int i = 1; i < n; i++) {
+            factorial = factorial.multiply(BigDecimal.valueOf(i));
+        }
+        return factorial;
     }
 
     public static int fibbonacciRecursive(int n) {
