@@ -8,6 +8,43 @@ import java.util.Arrays;
 
 @SuppressWarnings({"UnusedDeclaration", "SpellCheckingInspection"})
 public class PureFunctions {
+
+    public static long sum(long[] input) {
+        return sum(input, 0, input.length - 1);
+    }
+
+    /**
+     * Sums the array elements
+     */
+    public static long sum(long[] input, int startIndex, int endIndex) {
+        long sum = 0;
+        for (int i = startIndex; i < endIndex; i++) {
+            sum += input[i];
+        }
+        return sum;
+    }
+
+
+    /**
+     * <a href="http://pl.spoj.com/problems/FZI_STEF/">Trasa koncertowa Stefena - SPOJ</a>
+     * @return najlepsza uzyskana suma podanego ciągu cyfr
+     */
+    public static long findBestSum(long[] input) {
+        long max = 0;
+        int lastArrayIndex = input.length - 1;
+
+        for (int i = 0; i < lastArrayIndex; i++) {
+            for (int j = lastArrayIndex; j > 0; j--) {
+                long result = PureFunctions.sum(input, i, j);
+
+                if (result > max) {
+                    max = result;
+                }
+            }
+        }
+        return max;
+    }
+
     /**
      * <a href="http://pl.spoj.com/problems/JSPACE/">SPOJ - JSPACE</a>
      */

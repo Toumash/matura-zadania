@@ -4,6 +4,7 @@ package pl.codesharks.matura;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -26,6 +27,27 @@ public class Exercises {
             System.out.println(n * n);
         }
     }
+
+    /**
+     * <a href="http://pl.spoj.com/problems/JZLICZ/">SPOJ - Zliczacz Liter</a>
+     * Liczy każdą literę oddzielnie, pokazuje ile jest każdej z nich - nie zawiera tych których nie podano na wejściu
+     *
+     * @param text tekst do policznia literek
+     */
+    public static Hashtable<Character, Integer> zliczLitery(String text) {
+        Hashtable<Character, Integer> table = new Hashtable<>();
+
+        for (int i = 0; i < text.length(); i++) {
+            char character = text.charAt(i);
+            if (table.containsKey(character)) {
+                table.put(character, table.get(character) + 1);
+            } else {
+                table.put(character, 1);
+            }
+        }
+        return table;
+    }
+
 
     /**
      * Liczy wyrazy i liczby w ciagu znaków
