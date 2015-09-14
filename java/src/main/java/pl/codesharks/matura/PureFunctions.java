@@ -27,6 +27,7 @@ public class PureFunctions {
 
     /**
      * <a href="http://pl.spoj.com/problems/FZI_STEF/">Trasa koncertowa Stefena - SPOJ</a>
+     *
      * @return najlepsza uzyskana suma podanego ciągu cyfr
      */
     public static long findBestSum(long[] input) {

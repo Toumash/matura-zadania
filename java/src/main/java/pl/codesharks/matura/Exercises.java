@@ -16,6 +16,102 @@ public class Exercises {
      */
     public static Scanner s = new Scanner(System.in).useLocale(Locale.ENGLISH);
 
+
+    /**
+     * <a href="http://pl.spoj.com/problems/KC005/">Weryfikacja formularza - SPOJ</a>
+     *
+     * @param line np. Imie: Roman; Nazwisko: Kowalski; Data ur.: 1900-01-30
+     * @return <ul><li>0, jeżeli i-ty wczytany z wejścia formularz nie zawiera poprawnego imienia; poprawne imiona zaczynają się
+     * od wielkiej litery, po której mogą nastąpić małe litery; </li>
+     * <li>1, jeżeli i-ty wczytany z wejścia formularz zawiera poprawne imię, a nie zawiera poprawnego nazwiska;
+     * poprawne nazwiska zaczynają się od wielkiej litery, po której następują małe litery;</li>
+     * <li>2, jeżeli i-ty wczytany z wejścia formularz zawiera poprawne imię i nazwisko, a nie zawiera poprawnej daty;
+     * w poprawnej dacie pole RRRR jest liczbą całkowitą z zakresu 1900-2000, pole MM jest liczbą całkowitą z zakresu 1-12,
+     * a pole DD liczbą całkowitą z zakresu 1-31;</li>
+     * <li>3, w pozostałych przypadkach.</li>
+     * </ul>
+     */
+    public static int formularz(String line) {
+        String[] dane = line.split(" ");
+        // trzeba usuwać średniki na końcu danych
+        String imie = dane[1].substring(0, dane[1].length() - 2);
+        String nazwisko = dane[3].substring(0, dane[3].length() - 2);
+        String data = dane[5].substring(0, dane[5].length() - 2);
+
+        if (!czyWyraz(imie) || imie.length() > 10) {
+            return 0;
+        } else if (!czyWyraz(nazwisko) || nazwisko.length() > 20) {
+            return 1;
+        } else if (!sprawdzDate(data)) {
+            return 2;
+        }
+
+        return 3;
+    }
+
+    /**
+     * <a href="http://pl.spoj.com/problems/KC005/">Weryfikacja formularza - SPOJ</a>
+     * II Część zadania formularz
+     */
+    private static boolean sprawdzDate(String data) {
+        if (data.length() != 10) {
+            return false;
+        }
+
+        String[] dane = data.split("-");
+        if (!czyLiczba(dane[0])) {
+            return false;
+        }
+        if (!czyLiczba(dane[1])) {
+            return false;
+        }
+        if (!czyLiczba(dane[2])) {
+            return false;
+        }
+
+        int rok = Integer.valueOf(dane[0]);
+        if (!(rok >= 1900 && rok <= 2000)) {
+            return false;
+        }
+
+        int miesiac = Integer.valueOf(dane[1]);
+        if (!(miesiac >= 1 && miesiac <= 12)) {
+            return false;
+        }
+
+        int dzien = Integer.valueOf(dane[2]);
+        if (!(dzien >= 1 && dzien <= 31)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public static boolean czyLiczba(String input) {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (NumberFormatException ignored) {
+            // not a number
+        }
+        return false;
+    }
+
+    public static boolean czyWyraz(String imie) {
+        char pierwsza = imie.charAt(0);
+        if (!Character.isUpperCase(pierwsza)) {
+            return false;
+        }
+
+        for (int i = 0; i < imie.length(); i++) {
+            // isLowerCase returns true ONLY for CHARACTERS, not for digits, so further investigation is redundant
+            if (!Character.isLowerCase(imie.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * <a href="http://pl.spoj.com/problems/MWPZ06X/"> Nowa działka - SPOJ</a>
      * wylicza kwadraty wpisywanych liczb
